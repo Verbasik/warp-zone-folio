@@ -1,0 +1,474 @@
+# Memory Bank Learning Journal
+## Warp Zone Folio Project
+
+> Этот файл содержит накопленные знания, паттерны и опыт работы с проектом.
+> Используется для улучшения эффективности AI агентов между сессиями.
+
+---
+
+## [2025-01-13] INITIALIZATION: Первичная инициализация Банка Памяти
+
+### Контекст
+Первая инициализация Банка Памяти для существующего проекта "Warp Zone Folio" - pixel-art портфолио шаблон.
+
+### Процесс
+1. Изучение README.md для понимания целей проекта
+2. Анализ package.json для технологического стека
+3. Исследование структуры src/ директории
+4. Чтение ключевых конфигурационных файлов
+5. Изучение основных компонентов (Navigation, Hero, Starfield, ThemeToggle)
+6. Анализ стилей и дизайн системы
+
+### Ключевые находки
+
+#### 1. Проект - готовый шаблон, не активная разработка
+**Важно:** Этот проект находится в состоянии "template ready" - полностью функциональный шаблон портфолио, ожидающий кастомизации пользователем. Он НЕ в активной разработке новых фич.
+
+**Применение:**
+- При следующих сессиях СНАЧАЛА спросить пользователя о целях работы
+- Не предполагать, что нужна разработка новых фич
+- Фокус на помощи с кастомизацией, деплоем, или исправлением issues
+
+#### 2. Configuration as Data - основной паттерн проекта
+**Шаблон:** Весь контент управляется через TypeScript конфигурационные файлы в `src/config/`
+
+**Структура:**
+```
+src/config/
+├── site.config.ts      # Персональные данные, контакты, timeline
+├── projects.config.ts  # Проекты с интерфейсом Project
+├── skills.config.ts    # Навыки по категориям
+```
+
+**Применение:**
+- При запросе изменения контента → редактировать конфиги, НЕ компоненты
+- При добавлении новых полей → обновить TypeScript интерфейс
+- Всегда проверять типобезопасность после изменений
+
+#### 3. Pixel-art дизайн система базируется на CSS Custom Properties
+**Шаблон:** Вся темизация через CSS variables в `src/index.css`
+
+**Ключевые переменные:**
+- `--primary`, `--secondary`, `--accent` - основные цвета (HSL формат)
+- `--pixel-shadow` - blocky shadow (4px 4px 0px)
+- `--pixel-border` - толщина границы (3px)
+- `--radius` - всегда 0px (sharp corners)
+
+**Применение:**
+- Кастомизация цветов → редактировать `:root` и `.light` в index.css
+- Сохранять HSL формат для цветов
+- Не использовать border-radius (нарушает pixel-art эстетику)
+
+#### 4. BrowserRouter vs HashRouter - критическая проблема
+**Проблема:** В `src/App.tsx:16` используется BrowserRouter, который НЕ работает на GitHub Pages.
+
+**Причина:** GitHub Pages не поддерживает client-side routing без дополнительной настройки.
+
+**Решение:** Заменить на HashRouter из react-router-dom.
+
+**Применение:**
+- ВСЕГДА упоминать эту проблему при обсуждении деплоя
+- Предлагать исправление как первый шаг перед деплоем
+- Объяснять, почему HashRouter нужен для GitHub Pages
+
+#### 5. Placeholders требуют замены пользователем
+**Паттерн:** Все личные данные - placeholders в формате `[YOUR_NAME]`, `[EMAIL_ADDRESS]`
+
+**Файлы с placeholders:**
+- `src/config/site.config.ts` - имя, email, социальные ссылки
+- `src/config/projects.config.ts` - GitHub URLs проектов
+- `index.html` - meta tags
+
+**Применение:**
+- При первом взаимодействии спросить, нужна ли помощь с заменой placeholders
+- Предоставить чек-лист файлов для обновления
+- Предупредить, что деплой без замены будет содержать placeholder контент
+
+#### 6. Структура секций компонента Index
+**Паттерн:** Одностраничное приложение, все секции на Index странице в определенном порядке:
+
+```tsx
+<Starfield />       // z-0, background
+<Navigation />      // z-50, fixed header
+<main>
+  <HeroSection />    // #home
+  <AboutSection />   // #about
+  <SkillsSection />  // #skills
+  <ProjectsSection /> // #projects
+  <TimelineSection /> // #timeline
+  <ContactSection /> // #contact
+</main>
+<Footer />
+```
+
+**Применение:**
+- При добавлении новой секции: вставить в нужное место в Index.tsx
+- Добавить ID секции (например, `id="new-section"`)
+- Обновить Navigation.tsx для добавления в меню
+- Убедиться, что z-index корректен (контент = z-10)
+
+#### 7. Smooth Scroll паттерн используется везде
+**Шаблон:** Кастомная функция scrollToSection с учетом offset для fixed header
+
+```typescript
+const scrollToSection = (href: string) => {
+  const element = document.querySelector(href);
+  const offset = 80; // Высота header
+  const elementPosition = element.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - offset;
+  window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+};
+```
+
+**Применение:**
+- При добавлении новых навигационных ссылок использовать эту функцию
+- Offset 80px учитывает высоту fixed header
+- preventDefault() обязателен при использовании с <a> тегами
+
+#### 8. PixelButton - основной UI компонент для кнопок
+**Паттерн:** Кастомный компонент с variants и sizes вместо стандартных shadcn Button
+
+**Variants:**
+- `primary` - cyan background
+- `secondary` - pink background
+- `accent` - green background
+- `ghost` - transparent background
+
+**Применение:**
+- Всегда использовать PixelButton вместо обычных кнопок для консистентности
+- Hover эффект - translate + shadow removal (pixel-style click)
+- Для ссылок-кнопок использовать PixelButton с onClick навигацией
+
+#### 9. Canvas animation для Starfield - производительный подход
+**Шаблон:** Использование Canvas API + requestAnimationFrame для фоновой анимации
+
+**Ключевые моменты:**
+- 150 звезд (не слишком много для производительности)
+- Twinkle эффект через Math.sin()
+- Cleanup в useEffect return (cancelAnimationFrame)
+- Resize handler для адаптивности
+
+**Применение:**
+- Для других pixel анимаций рассмотреть Canvas вместо CSS если много элементов
+- Всегда cleanup animation frames
+- Использовать pointer-events: none для background элементов
+
+#### 10. Theme Toggle использует localStorage, не библиотеки
+**Шаблон:** Простая кастомная реализация без next-themes
+
+**Реализация:**
+- State: `useState<"dark" | "light">("dark")`
+- Persistence: `localStorage.getItem/setItem("theme")`
+- Application: `document.documentElement.classList.toggle("light")`
+
+**Применение:**
+- next-themes dependency можно удалить (не используется)
+- При модификации темизации работать с этой кастомной реализацией
+- Преимущество: нет flash of unstyled content, простая логика
+
+---
+
+## PATTERNS: Повторяющиеся задачи и решения
+
+### Pattern: Добавление новой секции портфолио
+
+**Когда использовать:** Пользователь хочет добавить новую секцию (например, "Certifications", "Testimonials")
+
+**Шаги:**
+1. Создать компонент в `src/components/sections/NewSection.tsx`
+2. Структура:
+   ```tsx
+   export const NewSection = () => {
+     return (
+       <section id="new-section" className="min-h-screen px-4 py-20">
+         <div className="container mx-auto max-w-6xl">
+           <h2 className="text-4xl font-bold text-center mb-12 pixel-glow">
+             Section Title
+           </h2>
+           {/* Content */}
+         </div>
+       </section>
+     );
+   };
+   ```
+3. Добавить в `src/pages/Index.tsx` в нужное место
+4. Обновить `src/components/Navigation.tsx`:
+   ```typescript
+   const navItems = [
+     // ...existing items
+     { label: "New Section", href: "#new-section" },
+   ];
+   ```
+5. (Опционально) Создать конфиг файл если контент должен быть конфигурируемым
+
+**Проверка:**
+- Навигация скроллит к секции
+- Секция подсвечивается в меню при скролле
+- Адаптивный дизайн работает
+
+### Pattern: Изменение цветовой схемы
+
+**Когда использовать:** Пользователь хочет изменить цвета портфолио
+
+**Файл:** `src/index.css`
+
+**Шаги:**
+1. Найти `:root` секцию для темной темы
+2. Изменить:
+   ```css
+   --primary: 189 97% 55%;    /* Новый primary цвет (HSL) */
+   --secondary: 328 86% 60%;  /* Новый secondary цвет */
+   --accent: 142 76% 56%;     /* Новый accent цвет */
+   ```
+3. Обновить тени для соответствия новым цветам:
+   ```css
+   --pixel-shadow: 4px 4px 0px hsl(/* darker version of background */);
+   ```
+4. Повторить для `.light` класса (светлая тема)
+5. Проверить контрастность (WCAG AA)
+
+**Инструмент:** https://hslpicker.com/ для выбора HSL цветов
+
+**Проверка:**
+- Все кнопки и акценты обновились
+- Тени соответствуют новой палитре
+- Обе темы (dark/light) работают
+
+### Pattern: Обновление контента пользователя
+
+**Когда использовать:** Пользователь хочет заменить placeholder контент
+
+**Чек-лист файлов:**
+
+1. **src/config/site.config.ts:**
+   - [ ] `name: "[YOUR_NAME]"` → реальное имя
+   - [ ] `tagline` → персональный tagline
+   - [ ] `shortBio` и `about.description`
+   - [ ] `contact.email` → реальный email
+   - [ ] `contact.github` → реальный GitHub URL
+   - [ ] `contact.linkedin` (опционально)
+   - [ ] `timeline[]` → реальный опыт работы
+
+2. **src/config/projects.config.ts:**
+   - [ ] Заменить example проекты на реальные
+   - [ ] Обновить `github` и `demo` URLs
+   - [ ] Добавить настоящие `tags`
+   - [ ] Отметить `featured: true` для лучших проектов
+
+3. **src/config/skills.config.ts:**
+   - [ ] Обновить навыки и их уровни
+   - [ ] Добавить/удалить категории
+   - [ ] Изменить иконки если нужно
+
+4. **index.html:**
+   - [ ] `<title>` tag
+   - [ ] `<meta name="description">`
+   - [ ] `<meta name="author">`
+   - [ ] Open Graph теги (og:title, og:description)
+
+**Проверка:**
+- Нет placeholders в квадратных скобках
+- Все ссылки рабочие
+- Email корректен
+
+---
+
+## TROUBLESHOOTING: Частые проблемы и решения
+
+### Problem: "Blank page after deployment to GitHub Pages"
+
+**Причины:**
+1. BrowserRouter вместо HashRouter
+2. Неправильный base URL в vite.config.ts
+
+**Решение:**
+1. Проверить `src/App.tsx:16`:
+   ```tsx
+   // Должно быть:
+   import { HashRouter } from "react-router-dom";
+   <HashRouter>
+
+   // НЕ:
+   import { BrowserRouter } from "react-router-dom";
+   <BrowserRouter>
+   ```
+
+2. Проверить `vite.config.ts`:
+   ```typescript
+   // Для username.github.io/repo-name:
+   export default defineConfig({
+     base: '/repo-name/',
+   });
+
+   // Для username.github.io:
+   export default defineConfig({
+     base: '/',
+   });
+   ```
+
+### Problem: "Navigation not highlighting active section"
+
+**Причина:** Scroll detection может не работать если IDs секций не совпадают с href в навигации.
+
+**Решение:**
+1. Проверить соответствие:
+   ```tsx
+   // Navigation.tsx
+   { label: "About", href: "#about" }
+
+   // AboutSection.tsx
+   <section id="about">  // ID должен совпадать без #
+   ```
+
+2. Проверить offset в Navigation.tsx (должен быть ~80px для header)
+
+### Problem: "Smooth scroll not working"
+
+**Причины:**
+1. `scroll-behavior: smooth` не в CSS
+2. preventDefault() не вызывается
+
+**Решение:**
+1. Проверить `src/index.css`:
+   ```css
+   html {
+     scroll-behavior: smooth;
+   }
+   ```
+
+2. Проверить навигационные ссылки:
+   ```tsx
+   onClick={(e) => {
+     e.preventDefault();  // ОБЯЗАТЕЛЬНО
+     scrollToSection(href);
+   }}
+   ```
+
+### Problem: "Theme not persisting between page reloads"
+
+**Причина:** localStorage не сохраняется или не читается.
+
+**Решение:**
+Проверить `src/components/ThemeToggle.tsx`:
+```typescript
+useEffect(() => {
+  const savedTheme = localStorage.getItem("theme") as "dark" | "light" || "dark";
+  setTheme(savedTheme);
+  document.documentElement.classList.toggle("light", savedTheme === "light");
+}, []);  // Должно выполняться на mount
+```
+
+---
+
+## PROJECT-SPECIFIC KNOWLEDGE: Уникальные знания о проекте
+
+### 1. Технологический стек - полностью статический
+**Важно:** Проект НЕ использует:
+- Backend/API
+- Database
+- Server-side rendering
+- External API calls (кроме потенциальных font CDN)
+
+**Все данные:**
+- Статичны (из конфигов)
+- Bundled в build
+- No runtime data fetching
+
+**Применение:**
+- Не предлагать решения с backend
+- Для форм - использовать Formspree/EmailJS (third-party)
+- Для CMS - только headless CMS с build-time fetch
+
+### 2. shadcn/ui компоненты установлены, но большинство не используется
+**Факт:** В проекте установлены 40+ shadcn/ui компонентов, но активно используются только несколько (Button, Toast).
+
+**Применение:**
+- Компоненты доступны для использования (уже настроены)
+- Можно предлагать shadcn компоненты для новых фич
+- НО: нужно адаптировать под pixel-art стиль
+
+**Пример адаптации:**
+```tsx
+// Использовать PixelButton wrapper вместо прямого shadcn Button
+// Или добавить pixel-border классы к shadcn компонентам
+```
+
+### 3. React Query установлен, но не используется
+**Факт:** `@tanstack/react-query` настроен в App.tsx, но нет фактических запросов.
+
+**Применение:**
+- Готов к использованию для будущих интеграций
+- Если нужно добавить API fetching - уже настроено
+- Для статического сайта - можно удалить чтобы уменьшить bundle
+
+### 4. Lovable Tagger - dev-only plugin
+**Что это:** `lovable-tagger` плагин для Vite, используется только в development mode.
+
+**Применение:**
+- Не влияет на production build
+- Не удалять - часть оригинального tech stack выбора
+
+### 5. Project naming: "Warp Zone Folio"
+**Источник:** Название взято из git истории и контекста проекта.
+
+**Применение:**
+- Использовать это название в документации
+- "Warp Zone" - отсылка к ретро играм (соответствует pixel-art теме)
+
+---
+
+## LESSONS LEARNED: Важные уроки
+
+### Lesson 1: Читать README перед глубоким анализом
+**Ситуация:** При инициализации сначала изучал файлы, потом README.
+
+**Лучше:** README.md содержит полную картину проекта, структуру, цели. Начинать с него экономит время.
+
+**Применение:** При работе с новым проектом - СНАЧАЛА README.md.
+
+### Lesson 2: Template projects требуют другого подхода
+**Ситуация:** Это template, не активный продукт.
+
+**Отличие:**
+- Не нужна roadmap новых фич
+- Фокус на кастомизации и деплое
+- Документация важнее кода
+
+**Применение:** Определить тип проекта (template vs active product) в начале работы.
+
+### Lesson 3: Placeholders - маркеры incomplete state
+**Паттерн:** `[PLACEHOLDER]` формат четко указывает на недостающий контент.
+
+**Применение:** При создании templates использовать такой формат для очевидности.
+
+### Lesson 4: Банк Памяти должен быть complete с первой инициализации
+**Подход:** Создать ВСЕ файлы Банка Памяти сразу, полностью заполненные.
+
+**Преимущество:**
+- Следующий AI агент сразу получает полный контекст
+- Нет "постепенного накопления" информации
+- Можно сразу работать эффективно
+
+---
+
+## USER PREFERENCES: Предпочтения текущего пользователя
+
+### [Пока не выявлено]
+При дальнейшей работе фиксировать:
+- Предпочитаемый стиль коммуникации
+- Технические предпочтения
+- Workflow предпочтения
+
+---
+
+## FUTURE IMPROVEMENTS: Идеи для этого Learning Journal
+
+1. **Добавить секцию "Common User Requests"** - накапливать частые запросы пользователей
+2. **Примеры кода для типичных модификаций** - готовые snippets
+3. **Troubleshooting decision tree** - алгоритм диагностики проблем
+4. **Performance benchmarks** - записывать метрики после оптимизаций
+
+---
+
+**Последнее обновление:** 2025-01-13
+**Следующая ревизия:** При следующей значительной работе с проектом

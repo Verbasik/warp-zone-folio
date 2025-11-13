@@ -7,7 +7,7 @@
 
 export const siteConfig = {
   // Personal Information
-  name: "[YOUR_NAME]",
+  name: "Verbasik",
   tagline: "Pixel-perfect full-stack engineer",
   shortBio: "I craft modern web experiences with clean code and creative design. From concept to deployment, I build applications that users love.",
   
@@ -23,10 +23,10 @@ I believe in writing clean, maintainable code and always learning something new.
 
   // Contact Information
   contact: {
-    email: "[EMAIL_ADDRESS]",
-    github: "https://github.com/[GITHUB_USERNAME]",
-    linkedin: "https://linkedin.com/in/[LINKEDIN_USERNAME]", // Optional
-    twitter: "https://twitter.com/[TWITTER_HANDLE]", // Optional
+    email: "verbasik@example.com",
+    github: "https://github.com/Verbasik",
+    linkedin: "https://linkedin.com/in/verbasik", // Optional
+    twitter: "https://twitter.com/verbasik", // Optional
     // Add more social links as needed
   },
 
@@ -60,7 +60,7 @@ I believe in writing clean, maintainable code and always learning something new.
 
   // Footer
   footer: {
-    copyright: `© ${new Date().getFullYear()} [YOUR_NAME]. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Verbasik. All rights reserved.`,
     builtWith: "Built with React, TypeScript, and Tailwind CSS",
   },
 };

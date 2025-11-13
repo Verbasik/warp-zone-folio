@@ -25,11 +25,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      // Redirect to hash route if accessing without hash
-      if (!window.location.hash) {
-        window.location.replace(window.location.href + '#/');
-      }
-    </script>
   </body>
 </html>

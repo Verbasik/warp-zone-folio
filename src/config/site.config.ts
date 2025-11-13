@@ -7,9 +7,9 @@
 
 export const siteConfig = {
   // Personal Information
-  name: "Verbasik",
-  tagline: "Pixel-perfect full-stack engineer",
-  shortBio: "I craft modern web experiences with clean code and creative design. From concept to deployment, I build applications that users love.",
+  name: "Hi there👋",
+  tagline: "I'm Edward",
+  shortBio: "Full-cycle AI/ML specialist—Pre-training, SFT, RLHF, deployment of LLMs, multimodal & computer vision systems. Staff Engineer with 5+ years building high-load AI systems using vLLM, SGLang, and Triton Inference Server. Architect of scalable multi-agent systems solving complex problems at enterprise scale.",
   
   // About Section
   about: {

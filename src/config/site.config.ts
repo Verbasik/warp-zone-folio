@@ -5,7 +5,7 @@
  * All the text, links, and personal information are defined here.
  */
 
-import avatarImage from '/public/avatar.jpg';
+import avatarImage from '/avatar.jpg';
 
 export const siteConfig = {
   // Personal Information
@@ -18,7 +18,7 @@ export const siteConfig = {
     description: `I'm Edward, a Staff ML Engineer and Tech Lead with 5+ years building production-grade AI systems at enterprise scale. My expertise spans the complete ML lifecycle—from foundation model pre-training and fine-tuning to RLHF optimization, deployment, and monitoring across LLMs, multimodal AI, and computer vision. I'm obsessed with end-to-end ownership, rigorous engineering, and building systems that work flawlessly under real-world constraints while maintaining scalability, maintainability, and compliance.
 
 What drives me is the intersection of ambitious research and practical impact. I've led cross-functional R&D and engineering teams architecting solutions that bridge cutting-edge research and production reality. Equally comfortable optimizing foundation models or architecting distributed multi-agent systems, I thrive tackling hard problems where innovation meets reliability. My background spans fintech, public sector, and biomedical AI, giving me perspective across domains and regulatory landscapes. Let's collaborate on next-generation intelligent systems—I'm excited to build solutions that inspire, scale, and endure.`,
-    image: "/avatar.jpg", // Замените на путь к вашему фото (поместите его в папку public/)
+    image: avatarImage,
   },
 
   // Contact Information

@@ -470,5 +470,134 @@ useEffect(() => {
 
 ---
 
-**Последнее обновление:** 2025-01-13
+## [2025-11-13] DEPLOYMENT: Успешный деплой на GitHub Pages
+
+### Контекст
+Проект Warp Zone Folio был успешно задеплоен на GitHub Pages после решения нескольких критических проблем.
+
+### Процесс и решенные проблемы
+
+#### 1. HashRouter вместо BrowserRouter - обязательно для GitHub Pages
+**Проблема:** BrowserRouter не работает на GitHub Pages из-за отсутствия server-side routing.
+
+**Решение:**
+```typescript
+// src/App.tsx
+import { HashRouter } from "react-router-dom";
+
+<HashRouter>
+  <Routes>...</Routes>
+</HashRouter>
+```
+
+**Применение в будущем:**
+- Для ЛЮБОГО SPA на GitHub Pages использовать HashRouter
+- BrowserRouter работает только с серверной конфигурацией (Vercel, Netlify с _redirects)
+
+#### 2. GitHub Actions environment - критично для деплоя
+**Проблема:** Workflow падал с ошибкой "Missing environment"
+
+**Решение:**
+```yaml
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+```
+
+**Применение:**
+- ВСЕГДА добавлять environment при деплое на GitHub Pages через Actions
+- Это требование GitHub для безопасности деплоя
+
+#### 3. GitHub Pages Source настройка - самая частая ошибка
+**Проблема:** GitHub Pages был настроен на "Deploy from a branch", игнорируя наш workflow.
+
+**Симптомы:**
+- Workflow выполняется успешно
+- Но на сайте старая/исходная версия файлов
+- `curl` показывает исходный index.html вместо собранного
+
+**Решение:**
+1. Settings → Pages
+2. Source: выбрать "GitHub Actions" (НЕ "Deploy from a branch")
+3. Это КРИТИЧНО - без этого Actions игнорируются
+
+**Применение:**
+- При первом деплое ВСЕГДА проверять эту настройку
+- Если сайт не обновляется после push - первым делом проверить Source
+
+#### 4. .nojekyll файл для GitHub Pages
+**Проблема:** GitHub Pages использует Jekyll по умолчанию, который игнорирует файлы с `_`
+
+**Решение:**
+```bash
+touch public/.nojekyll
+```
+
+**Применение:**
+- Добавлять .nojekyll в public/ для ЛЮБОГО non-Jekyll проекта на GitHub Pages
+- Особенно важно для Vite/Webpack с asset файлами
+
+#### 5. Inline скрипты и Vite build
+**Проблема:** Добавили inline `<script>` в index.html для redirect, но Vite его не обработал.
+
+**Причина:** Vite обрабатывает только `<script type="module" src="...">`, inline скрипты просто копируются.
+
+**Решение:** Переместить логику в main.tsx:
+```typescript
+// src/main.tsx
+if (!window.location.hash) {
+  window.location.replace(window.location.pathname + '#/');
+}
+```
+
+**Применение:**
+- НЕ добавлять логику в inline скрипты в index.html
+- ВСЯ логика должна быть в TypeScript файлах для правильного bundling
+
+#### 6. 404.html для SPA на GitHub Pages
+**Добавлено:** public/404.html с redirect на index.html
+
+**Зачем:** Обрабатывает прямые переходы на /about, /contact и т.д.
+
+**Применение:**
+- Добавлять 404.html для ВСЕХ SPA на GitHub Pages
+- Стандартный workaround для отсутствия server-side routing
+
+### Ключевые уроки
+
+**Урок 1: GitHub Pages Source - первое что проверять**
+Если деплой через Actions проходит успешно, но сайт не обновляется - проверить Source в настройках.
+
+**Урок 2: HashRouter обязателен для GitHub Pages**
+Нет исключений. BrowserRouter требует серверной конфигурации.
+
+**Урок 3: Не смешивать inline скрипты с module bundling**
+Vite не обрабатывает inline скрипты. Вся логика в .ts/.tsx файлах.
+
+**Урок 4: Проверять что реально задеплоилось**
+Использовать `curl https://site.url/` чтобы увидеть реальный HTML на продакшене.
+
+**Урок 5: base URL критичен для asset paths**
+```typescript
+// vite.config.ts
+base: '/repo-name/'  // Для project pages
+base: '/'            // Для user/org pages
+```
+
+### Checklist для будущих деплоев на GitHub Pages
+
+- [ ] HashRouter вместо BrowserRouter
+- [ ] vite.config.ts: правильный `base` URL
+- [ ] .github/workflows/deploy.yml с environment: github-pages
+- [ ] public/.nojekyll файл
+- [ ] public/404.html для SPA routing
+- [ ] Settings → Pages → Source: "GitHub Actions"
+- [ ] Вся логика в .ts файлах, не в inline скриптах
+- [ ] Проверка через curl после деплоя
+
+---
+
+**Последнее обновление:** 2025-11-13
 **Следующая ревизия:** При следующей значительной работе с проектом

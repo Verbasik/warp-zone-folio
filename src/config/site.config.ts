@@ -1,9 +1,11 @@
 /**
  * Site Configuration
- * 
+ *
  * Edit this file to customize your portfolio content.
  * All the text, links, and personal information are defined here.
  */
+
+import avatarImage from '/public/avatar.jpg';
 
 export const siteConfig = {
   // Personal Information

@@ -8,7 +8,7 @@ const navItems = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
+  // { label: "Projects", href: "#projects" }, // Temporarily hidden until real projects are added
   { label: "Timeline", href: "#timeline" },
   { label: "Contact", href: "#contact" },
 ];

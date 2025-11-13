@@ -3,7 +3,7 @@ import { Starfield } from "@/components/Starfield";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
-import { ProjectsSection } from "@/components/sections/ProjectsSection";
+// import { ProjectsSection } from "@/components/sections/ProjectsSection"; // Temporarily hidden until real projects are added
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground relative">
       {/* Starfield background */}
       <Starfield />
-      
+
       {/* Navigation */}
       <Navigation />
 
@@ -22,7 +22,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
+        {/* <ProjectsSection /> */} {/* Temporarily hidden until real projects are added */}
         <TimelineSection />
         <ContactSection />
       </main>

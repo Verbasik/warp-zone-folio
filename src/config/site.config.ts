@@ -31,30 +31,58 @@ What drives me is the intersection of ambitious research and practical impact. I
   },
 
   // Timeline / Experience
-  timeline: [
+  workExperience: [
     {
-      year: "2024",
-      title: "Senior Full-Stack Developer",
-      company: "Tech Company",
-      description: "Leading development of scalable web applications using React, TypeScript, and Node.js.",
+      year: "2025",
+      title: "Staff ML Engineer",
+      company: "SberBank",
+      description: "Post-training adaptation of GigaChat 12B Vision-Language Model for banking domain. Achieved +28% improvement in domain-specific benchmarks with <300ms p95 latency in production.",
     },
     {
-      year: "2022",
-      title: "Full-Stack Developer",
-      company: "Startup Inc",
-      description: "Built and maintained multiple client projects from design to deployment.",
+      year: "2024–2025",
+      title: "Tech Lead Artificial Intelligence",
+      company: "Alfa-Bank",
+      description: "Led cross-functional AI teams (R&D, Agents, MLOps). Architected AI Agents Orchestrator (100+ TPS, 10+ enterprise integrations) and PromptPilot Store (+35% quality improvement). Built distributed multi-agent systems with fault tolerance and transactional state management.",
     },
     {
-      year: "2020",
-      title: "Frontend Developer",
-      company: "Digital Agency",
-      description: "Specialized in React development and UI/UX implementation.",
+      year: "2023–2024",
+      title: "Team Lead Data Science",
+      company: "Moscow Department of IT",
+      description: "Led Data Science, Analytics, and Engineering teams. Adapted Mistral-7B for Russian language (78.3 Russian SuperGLUE, +4.2 vs SOTA). Built self-hosted LLM platform with RAG integration replacing Foundation Models.",
     },
     {
-      year: "2019",
-      title: "Computer Science Degree",
-      company: "University Name",
-      description: "Graduated with honors, focused on software engineering and web technologies.",
+      year: "2021–2022",
+      title: "Data Science / Analytics",
+      company: "AION Labs Israel",
+      description: "Developed ML solutions for biomedical research. Built Flow Cytometry Analytics Platform (12× faster analysis, 94.3% accuracy), DNA Pattern Recognition Engine (89.7% AUC-ROC), and Cell Microscopy Segmentation AI (91.4% Dice Score).",
+    },
+  ],
+
+  education: [
+    {
+      year: "2024–2026",
+      title: "Master's Degree",
+      company: "Moscow Aviation Institute",
+      description: "Computational Mathematics and Programming, specializing in Machine Learning and Data Analysis.",
+      status: "ongoing",
+    },
+    {
+      year: "2022–2024",
+      title: "Professional Retraining",
+      company: "Yandex School of Data Analysis",
+      description: "Data Science and Mathematics for machine learning. Completed advanced program covering ML theory, deep learning, and production engineering.",
+    },
+    {
+      year: "2016–2020",
+      title: "Bachelor's Degree",
+      company: "Lomonosov Moscow State University",
+      description: "Computational Mathematics and Cybernetics, specializing in Applied Mathematics and Informatics.",
+    },
+    {
+      year: "2012–2016",
+      title: "Bachelor's Degree",
+      company: "Moscow International Academy",
+      description: "Business Management. Foundational business education providing perspective on product development and organizational management.",
     },
   ],
 

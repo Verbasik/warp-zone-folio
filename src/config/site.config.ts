@@ -13,14 +13,10 @@ export const siteConfig = {
   
   // About Section
   about: {
-    description: `I'm Edward, a Staff ML Engineer and Tech Lead with 5+ years of intensive experience building production-grade AI systems at enterprise scale. My expertise spans the complete machine learning lifecycle—from foundation model pre-training and domain-specific fine-tuning to RLHF optimization, deployment, and monitoring. I specialize in large language models, multimodal AI, and computer vision, with a proven track record of delivering measurable impact: 28% quality improvements on domain benchmarks, 99.95% uptime on high-load systems, and sub-200ms latency serving 100+ TPS in fintech and banking environments.
+    description: `I'm Edward, a Staff ML Engineer and Tech Lead with 5+ years building production-grade AI systems at enterprise scale. My expertise spans the complete ML lifecycle—from foundation model pre-training and fine-tuning to RLHF optimization, deployment, and monitoring across LLMs, multimodal AI, and computer vision. I'm obsessed with end-to-end ownership, rigorous engineering, and building systems that work flawlessly under real-world constraints while maintaining scalability, maintainability, and compliance.
 
-Throughout my career, I've led cross-functional R&D and engineering teams, architecting complex AI solutions that bridge the gap between cutting-edge research and production reality. My philosophy: great AI isn't just about state-of-the-art models—it's about rigorous engineering, thoughtful optimization, and building systems that work flawlessly under real-world constraints. I'm obsessed with end-to-end ownership, from hypothesis to production, ensuring every system is scalable, maintainable, and compliant.
-
-What drives me is the intersection of ambitious research and practical impact. I'm equally comfortable optimizing foundation models or architecting distributed multi-agent systems, debugging latency issues or mentoring teams through complex ML pipelines. I thrive in environments where we tackle hard problems—where innovation meets reliability, and where AI solutions genuinely move the needle on business outcomes. My background spans fintech, public sector, and biomedical AI, giving me perspective on how to build systems that work across different domains and regulatory landscapes.
-
-I'm always looking for new challenges where cutting-edge AI research meets real-world application. Whether you're building the next generation of intelligent systems, scaling AI operations, or pushing the boundaries of what's possible with LLMs and multi-agent architectures—I'm excited to collaborate. Let's create AI solutions that don't just work—they inspire, scale, and endure.`,
-    image: "/placeholder.svg", // Path to your avatar image
+What drives me is the intersection of ambitious research and practical impact. I've led cross-functional R&D and engineering teams architecting solutions that bridge cutting-edge research and production reality. Equally comfortable optimizing foundation models or architecting distributed multi-agent systems, I thrive tackling hard problems where innovation meets reliability. My background spans fintech, public sector, and biomedical AI, giving me perspective across domains and regulatory landscapes. Let's collaborate on next-generation intelligent systems—I'm excited to build solutions that inspire, scale, and endure.`,
+    image: "/avatar.jpg", // Замените на путь к вашему фото (поместите его в папку public/)
   },
 
   // Contact Information

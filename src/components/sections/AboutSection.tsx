@@ -13,9 +13,11 @@ export const AboutSection = () => {
           <div className="flex justify-center md:justify-end">
             <div className="relative">
               <div className="w-64 h-64 pixel-border-primary bg-card p-4 animate-pixel-float">
-                <div className="w-full h-full bg-muted flex items-center justify-center text-8xl">
-                  🧑‍💻
-                </div>
+                <img
+                  src={siteConfig.about.image}
+                  alt={siteConfig.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
               {/* Decorative pixels */}
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-secondary pixel-border" />

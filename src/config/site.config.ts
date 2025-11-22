@@ -23,7 +23,7 @@ What drives me is the intersection of ambitious research and practical impact. I
 
   // Contact Information
   contact: {
-    email: "verbasik@example.com",
+    email: "verbasik2018@gmail.com",
     github: "https://github.com/Verbasik",
     linkedin: "https://linkedin.com/in/verbasik", // Optional
     twitter: "https://twitter.com/verbasik", // Optional
@@ -36,13 +36,13 @@ What drives me is the intersection of ambitious research and practical impact. I
       year: "2025",
       title: "Staff ML Engineer",
       company: "SberBank",
-      description: "Post-training adaptation of GigaChat 12B Vision-Language Model for banking domain. Achieved +28% improvement in domain-specific benchmarks with <300ms p95 latency in production.",
+      description: "End-to-End ML Post-training adaptation of GigaChat for banking domain.",
     },
     {
       year: "2024–2025",
       title: "Tech Lead Artificial Intelligence",
       company: "Alfa-Bank",
-      description: "Led cross-functional AI teams (R&D, Agents, MLOps). Architected AI Agents Orchestrator (100+ TPS, 10+ enterprise integrations) and PromptPilot Store (+35% quality improvement). Built distributed multi-agent systems with fault tolerance and transactional state management.",
+      description: "Led cross-functional AI teams (R&D, Agents, MLOps). Spearheaded the research, architecture, and deployment of high-performance LLM and multi-agent systems at enterprise scale, with a focus on reliability, low-latency inference, and measurable impact. Delivered AI-driven platforms that significantly improved quality, automation, and compliance across banking use cases.",
     },
     {
       year: "2023–2024",

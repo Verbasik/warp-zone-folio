@@ -143,10 +143,9 @@
     - <300ms p95 latency in production
 
   - [✅] **2024-2025: Alfa-Bank - Tech Lead AI**
-    - Cross-functional AI teams (R&D, Agents, MLOps)
-    - AI Agents Orchestrator (100+ TPS, 10+ integrations)
-    - PromptPilot Store (+35% quality improvement)
-    - Multi-agent systems with fault tolerance
+    - Spearheaded research, architecture, and deployment of high-performance LLM and multi-agent systems at enterprise scale
+    - Focus on reliability, low-latency inference, and measurable impact
+    - Delivered AI platforms improving quality, automation, and compliance across banking use cases
 
   - [✅] **2023-2024: Moscow Department of IT - Team Lead DS**
     - Led Data Science, Analytics, Engineering teams
@@ -182,7 +181,7 @@
 - [✅] Адаптивный дизайн (стек на мобильных)
 
 #### 5. Contact Section ✅
-- [✅] Email: verbasik@example.com
+- [✅] Email: verbasik2018@gmail.com
 - [✅] GitHub: https://github.com/Verbasik
 - [✅] LinkedIn: https://linkedin.com/in/verbasik
 - [✅] Twitter: https://twitter.com/verbasik

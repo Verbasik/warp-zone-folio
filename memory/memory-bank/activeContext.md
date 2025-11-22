@@ -44,7 +44,7 @@
    - ✅ Разделен на два независимых трека:
      - 💼 **Work Experience** (4 позиции):
        - 2025: SberBank - Staff ML Engineer (GigaChat VLM)
-       - 2024-2025: Alfa-Bank - Tech Lead AI (Agents Orchestrator, PromptPilot)
+      - 2024-2025: Alfa-Bank - Tech Lead AI (LLM & multi-agent systems)
        - 2023-2024: Moscow Dept IT - Team Lead DS (Mistral-7B adaptation)
        - 2021-2022: AION Labs Israel - Data Science (Biomedical ML)
      - 🎓 **Education** (4 степени):
@@ -224,7 +224,7 @@ export const siteConfig = {
     image: avatarImage, // import from '/avatar.jpg'
   },
   contact: {
-    email: "verbasik@example.com",
+    email: "verbasik2018@gmail.com",
     github: "https://github.com/Verbasik",
     linkedin: "https://linkedin.com/in/verbasik",
     twitter: "https://twitter.com/verbasik",

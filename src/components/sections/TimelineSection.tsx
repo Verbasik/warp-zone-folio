@@ -63,7 +63,33 @@ export const TimelineSection = () => {
                     {item.company}
                   </p>
                   <p className="text-xs sm:text-sm text-foreground leading-relaxed">
-                    {item.description}
+                    {(() => {
+                      const desc = (item as any).description as unknown;
+                      if (typeof desc === "string") {
+                        const keyword = "GigaChat";
+                        const idx = desc.indexOf(keyword);
+                        if (idx >= 0) {
+                          const before = desc.slice(0, idx);
+                          const after = desc.slice(idx + keyword.length);
+                          return (
+                            <span>
+                              {before}
+                              <a
+                                href="https://huggingface.co/ai-sage"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline text-secondary hover:opacity-80"
+                              >
+                                {keyword}
+                              </a>
+                              {after}
+                            </span>
+                          );
+                        }
+                        return desc;
+                      }
+                      return desc as any;
+                    })()}
                   </p>
                 </div>
               </div>

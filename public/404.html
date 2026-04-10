@@ -14,7 +14,7 @@
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
         l.pathname.split('/').slice(0, pathSegmentsToKeep + 1).join('/') +
-        '/#/' + path + (path === '' ? '' : '/') +
+        '/#/' + path +
         (l.search ? '&' + l.search.slice(1) : '')
       );
     </script>

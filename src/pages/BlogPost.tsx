@@ -32,7 +32,7 @@ const BlogPost = () => {
     setLoading(true);
     setError(false);
 
-    const suffix = lang === "en" ? ".en" : "";
+    const suffix = lang === "en" ? ".en" : ".ru";
     fetch(`/warp-zone-folio/blog/${post.slug}/${post.slug}${suffix}.md`)
       .then((res) => {
         if (!res.ok) throw new Error("Not found");

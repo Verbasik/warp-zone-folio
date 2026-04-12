@@ -168,7 +168,7 @@ $$
 
 Иллюстрация к примеру:
 
-![Figure 01](/warp-zone-folio/blog/turboquant/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-01.png)
 
 Квантователь задаётся как пара кодера и декодера:
 
@@ -322,7 +322,7 @@ $$
 
 Иллюстрация к примеру:
 
-![Figure 02](/warp-zone-folio/blog/turboquant/Figure-02.png)
+![Figure 02](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-02.png)
 
 Статья использует две основные метрики.
 
@@ -349,7 +349,7 @@ $$
 
 Иллюстрация к метрике $D_{\mathrm{mse}}$:
 
-![Figure 03](/warp-zone-folio/blog/turboquant/Figure-03.png)
+![Figure 03](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-03.png)
 
 > На втором шаге, первая точка - это исходный вектор, а вторая это - восстановленный... (Издержки генерации)
 
@@ -490,7 +490,7 @@ $$
 
 Иллюстрация к метрике $D_{\mathrm{prod}}$:
 
-![Figure 04](/warp-zone-folio/blog/turboquant/Figure-04.png)
+![Figure 04](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-04.png)
 
 Для inner-product-задач отдельно важно условие несмещённости:
 
@@ -623,7 +623,7 @@ $$
 
 Иллюстрация к примеру: как случайное вращение преобразует распределение координат
 
-![Figure 05](/warp-zone-folio/blog/turboquant/Figure-05.png)
+![Figure 05](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-05.png)
 
 ### Теоретический предел
 
@@ -696,7 +696,7 @@ $$
 
 Визуализация экспоненциального убывания нижней границы distortion:
 
-![Figure 06](/warp-zone-folio/blog/turboquant/Figure-06.png)
+![Figure 06](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-06.png)
 
 ### Базовый 1-битный блок: QJL
 
@@ -820,7 +820,7 @@ $$
 
 Визуализация шагов QJL: кодирование знаков, декодирование и восстановление скалярного произведения (inner product):
 
-![Figure 07](/warp-zone-folio/blog/turboquant/Figure-07.png)
+![Figure 07](/warp-zone-folio/blog/turboquant/Infographic/RU/Figure-07.png)
 
 ### Алгоритм TurboQuant-mse
 

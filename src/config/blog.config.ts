@@ -26,7 +26,7 @@ export const blogConfig: BlogPost[] = [
     tags: ["ML", "Quantization", "LLM", "Vector Search", "KV Cache"],
     readingTime: 18,
     featured: true,
-    status: "draft",
+    status: "published",
   },
 ];
 

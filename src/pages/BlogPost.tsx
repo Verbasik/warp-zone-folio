@@ -15,6 +15,8 @@ const formatDate = (iso: string) =>
     day: "numeric",
   });
 
+type Lang = "ru" | "en";
+
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getPostBySlug(slug) : undefined;
@@ -22,6 +24,7 @@ const BlogPost = () => {
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [lang, setLang] = useState<Lang>("ru");
 
   useEffect(() => {
     if (!post) return;
@@ -29,7 +32,8 @@ const BlogPost = () => {
     setLoading(true);
     setError(false);
 
-    fetch(`/warp-zone-folio/blog/${post.slug}/${post.slug}.md`)
+    const suffix = lang === "en" ? ".en" : "";
+    fetch(`/warp-zone-folio/blog/${post.slug}/${post.slug}${suffix}.md`)
       .then((res) => {
         if (!res.ok) throw new Error("Not found");
         return res.text();
@@ -42,7 +46,7 @@ const BlogPost = () => {
         setError(true);
         setLoading(false);
       });
-  }, [post]);
+  }, [post, lang]);
 
   if (!post) return <NotFound />;
 
@@ -64,7 +68,7 @@ const BlogPost = () => {
 
           {/* Post header */}
           <header className="mb-10 pb-8 border-b-2 border-foreground/10">
-            {/* Status + Tags */}
+            {/* Status + Tags + Lang switcher */}
             <div className="flex flex-wrap items-center gap-2 mb-4">
               {post.status === "draft" ? (
                 <span className="inline-flex items-center font-mono text-xs font-bold text-amber-400 border border-amber-400/50 px-2 py-0.5 bg-amber-400/10">
@@ -84,11 +88,28 @@ const BlogPost = () => {
                   {tag}
                 </span>
               ))}
+              {post.hasEnglish && (
+                <div className="flex items-center gap-1 ml-auto">
+                  {(["ru", "en"] as Lang[]).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => setLang(l)}
+                      className={`font-mono text-xs px-2 py-0.5 border transition-colors ${
+                        lang === l
+                          ? "border-primary text-primary bg-primary/10"
+                          : "border-foreground/20 text-foreground/40 hover:text-foreground/70"
+                      }`}
+                    >
+                      {l.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Title */}
             <h1 className="font-mono text-2xl sm:text-3xl font-bold text-foreground leading-snug mb-4">
-              {post.title}
+              {lang === "en" && post.titleEn ? post.titleEn : post.title}
             </h1>
 
             {/* Meta */}
@@ -100,7 +121,7 @@ const BlogPost = () => {
               {post.readingTime && (
                 <span className="flex items-center gap-1.5">
                   <Clock size={12} />
-                  {post.readingTime} минут чтения
+                  {post.readingTime} {lang === "en" ? "min read" : "минут чтения"}
                 </span>
               )}
             </div>

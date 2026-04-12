@@ -168,7 +168,7 @@ Visual interpretation in space:
 
 Illustration for the example:
 
-![Figure 01](/warp-zone-folio/blog/turboquant/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-01.png)
 
 The quantizer is defined as an encoder-decoder pair:
 
@@ -322,7 +322,7 @@ Visual interpretation of "before/after":
 
 Illustration for the example:
 
-![Figure 02](/warp-zone-folio/blog/turboquant/Figure-02.png)
+![Figure 02](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-02.png)
 
 The paper uses two main metrics.
 
@@ -349,9 +349,7 @@ Visual interpretation:
 
 Illustration for the metric $D_{\mathrm{mse}}$:
 
-![Figure 03](/warp-zone-folio/blog/turboquant/Figure-03.png)
-
-> On the second step, the first point is the original vector, and the second is the reconstructed one... (Generation artifact)
+![Figure 03](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-03.png)
 
 For retrieval and attention tasks:
 
@@ -490,7 +488,7 @@ Visual interpretation:
 
 Illustration for the metric $D_{\mathrm{prod}}$:
 
-![Figure 04](/warp-zone-folio/blog/turboquant/Figure-04.png)
+![Figure 04](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-04.png)
 
 For inner-product tasks, the unbiasedness condition is separately important:
 
@@ -623,7 +621,7 @@ Conclusion: at large dimensionality $d$, rotation not only equalizes the scale o
 
 Illustration for the example: how random rotation transforms the coordinate distribution
 
-![Figure 05](/warp-zone-folio/blog/turboquant/Figure-05.png)
+![Figure 05](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-05.png)
 
 ### Theoretical Lower Bound
 
@@ -696,7 +694,7 @@ This is the **exponential decay**: each bit per coordinate adds two bits of dist
 
 Visualization of the exponential decay of the distortion lower bound:
 
-![Figure 06](/warp-zone-folio/blog/turboquant/Figure-06.png)
+![Figure 06](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-06.png)
 
 ### Basic 1-Bit Block: QJL
 
@@ -820,7 +818,7 @@ Summary: with a single run the variance is high, but the estimate is unbiased â€
 
 Visualization of QJL steps: sign encoding, decoding, and inner product reconstruction:
 
-![Figure 07](/warp-zone-folio/blog/turboquant/Figure-07.png)
+![Figure 07](/warp-zone-folio/blog/turboquant/Infographic/EN/Figure-07.png)
 
 ### TurboQuant-mse Algorithm
 

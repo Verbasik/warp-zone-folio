@@ -24,7 +24,7 @@ LeWorldModel относится к классу **latent world models**, а то
 
 ## Формальная постановка
 
-![Figure 01](/warp-zone-folio/blog/JEPA/Infographic/RU/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/jepa/Infographic/RU/Figure-01.png)
 
 Пусть в распоряжении есть траектория наблюдений и действий:
 
@@ -98,7 +98,7 @@ $$
 
 ## Формальная постановка
 
-![Figure 01](/warp-zone-folio/blog/JEPA/Infographic/RU/Figure-02.png)
+![Figure 01](/warp-zone-folio/blog/jepa/Infographic/RU/Figure-02.png)
 
 Пусть loss содержит только ошибку предсказания:
 

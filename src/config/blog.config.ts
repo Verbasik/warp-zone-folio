@@ -28,9 +28,9 @@ export const blogConfig: BlogPost[] = [
       "Разбор paper TurboQuant — схемы квантования высокоразмерных векторов, которая одновременно оптимальна для реконструкции и для задач inner product. Случайное вращение, scalar quantization и QJL-коррекция в одном pipeline.",
     descriptionEn:
       "A deep dive into TurboQuant — a quantization scheme for high-dimensional vectors that is simultaneously optimal for reconstruction and inner product tasks. Random rotation, scalar quantization, and QJL correction in one pipeline.",
-    date: "2026-04-08",
+    date: "2026-04-12",
     tags: ["ML", "Quantization", "LLM", "Vector Search", "KV Cache"],
-    readingTime: 45,
+    readingTime: 60,
     featured: true,
     status: "published",
     hasEnglish: true,

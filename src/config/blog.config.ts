@@ -22,19 +22,35 @@ export interface BlogPost {
 export const blogConfig: BlogPost[] = [
   {
     slug: "turboquant",
-    title: "TurboQuant: Data-Oblivious квантование векторов",
-    titleEn: "TurboQuant: Data-Oblivious Vector Quantization",
+    title: "TurboQuant от Google: прорыв в ИИ или мастерский маркетинговый трюк?",
+    titleEn: "TurboQuant from Google: AI Breakthrough or Masterful Marketing Trick?",
     description:
       "Разбор paper TurboQuant — схемы квантования высокоразмерных векторов, которая одновременно оптимальна для реконструкции и для задач inner product. Случайное вращение, scalar quantization и QJL-коррекция в одном pipeline.",
     descriptionEn:
       "A deep dive into TurboQuant — a quantization scheme for high-dimensional vectors that is simultaneously optimal for reconstruction and inner product tasks. Random rotation, scalar quantization, and QJL correction in one pipeline.",
     date: "2026-04-08",
     tags: ["ML", "Quantization", "LLM", "Vector Search", "KV Cache"],
-    readingTime: 18,
+    readingTime: 45,
     featured: true,
     status: "published",
     hasEnglish: true,
   },
+  {
+    slug: "leworldmodel",
+    title: "LeWorldModel: как обучить world model из пикселей без коллапса представлений",
+    titleEn: "LeWorldModel: Learning Stable World Models from Pixels without Representation Collapse",
+    description:
+      "Глубокий разбор LeWorldModel — минималистичной JEPA-архитектуры для обучения world models напрямую из пикселей. Всего два loss-компонента: предсказание следующего latent и SIGReg-регуляризация, обеспечивающая гауссовскую геометрию и предотвращающая collapse.",
+    descriptionEn:
+      "A deep dive into LeWorldModel — a minimalist JEPA-based architecture for learning world models directly from pixels. Only two loss terms: next-latent prediction and SIGReg regularization enforcing Gaussian geometry and preventing collapse.",
+    date: "2026-04-26",
+    tags: ["ML", "World Models", "JEPA", "Self-Supervised Learning", "Control"],
+    readingTime: 60,
+    featured: true,
+    status: "draft",
+    hasEnglish: true,
+  },
+
 ];
 
 export const getFeaturedPosts = () => blogConfig.filter((p) => p.featured);

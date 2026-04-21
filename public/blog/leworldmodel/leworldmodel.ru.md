@@ -22,7 +22,7 @@ LeWorldModel относится к классу **latent world models**, а то
 
 ## Формальная постановка
 
-![Figure 01](https://raw.githubusercontent.com/Verbasik/warp-zone-folio/refs/heads/main/public/blog/leworldmodel/Infographic/RU/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-01.png)
 
 Пусть в распоряжении есть траектория наблюдений и действий:
 
@@ -94,7 +94,7 @@ $$
 
 ## Формальная постановка
 
-![Figure 02](https://raw.githubusercontent.com/Verbasik/warp-zone-folio/refs/heads/main/public/blog/leworldmodel/Infographic/RU/Figure-02.png)
+![Figure 02](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-02.png)
 
 Пусть loss содержит только ошибку предсказания:
 
@@ -219,7 +219,7 @@ $$
 - **Нормализация**: перед подачей в модель действия обычно масштабируются в диапазон $[-1, 1]$ или стандартизируются по датасету;
 - **Офлайн-источник**: $a_t$ берётся из записанных траекторий поведенческой политики, модель не генерирует действия в процессе обучения.
 
-![Figure 03](https://raw.githubusercontent.com/Verbasik/warp-zone-folio/refs/heads/main/public/blog/leworldmodel/Infographic/RU/Figure-03.png)
+![Figure 03](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-03.png)
 
 
 ---
@@ -264,4 +264,4 @@ $$
 
 Статья не выписывает эту формулу в явном виде, но именно так обычно интерпретируется AdaLN. Здесь это уже математическая реконструкция механизма из архитектурного описания. Поддерживающее описание самого факта использования AdaLN и zero-init дано в статье.
 
-![Figure 04](https://raw.githubusercontent.com/Verbasik/warp-zone-folio/refs/heads/main/public/blog/leworldmodel/Infographic/RU/Figure-04.png)
+![Figure 04](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-04.png)

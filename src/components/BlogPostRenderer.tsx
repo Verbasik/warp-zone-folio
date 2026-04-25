@@ -1,6 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
 import "katex/dist/katex.min.css";
 import type { Components } from "react-markdown";
 
@@ -76,6 +77,16 @@ const components: Components = {
     <strong className="text-primary font-bold">{children}</strong>
   ),
   hr: () => <hr className="border-t-2 border-primary/20 my-8" />,
+  details: ({ children }) => (
+    <details className="border-2 border-primary/30 bg-background/60 p-4 my-4 rounded-sm [&_summary]:font-mono [&_summary]:text-sm [&_summary]:text-primary [&_summary]:font-bold [&_summary]:cursor-pointer">
+      {children}
+    </details>
+  ),
+  summary: ({ children }) => (
+    <summary className="font-mono text-sm text-primary font-bold cursor-pointer list-none marker:content-[''] before:content-['▶'] before:mr-2 before:text-primary after:content-[''] pl-6 list-none">
+      {children}
+    </summary>
+  ),
 };
 
 export const BlogPostRenderer = ({ content }: BlogPostRendererProps) => {
@@ -83,7 +94,7 @@ export const BlogPostRenderer = ({ content }: BlogPostRendererProps) => {
     <div className="blog-content max-w-3xl mx-auto">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
-        rehypePlugins={[rehypeKatex]}
+        rehypePlugins={[rehypeRaw, rehypeKatex]}
         components={components}
       >
         {content}

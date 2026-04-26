@@ -47,7 +47,7 @@ export const blogConfig: BlogPost[] = [
     tags: ["ML", "World Models", "JEPA", "Self-Supervised Learning", "Control"],
     readingTime: 60,
     featured: true,
-    status: "draft",
+    status: "published",
     hasEnglish: true,
   },
 

@@ -22,7 +22,7 @@ Thus, instead of expensive modeling in pixel space $(\mathbb{R}^{H \times W \tim
 
 ## Formal Formulation
 
-![Figure 01](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-01.png)
 
 Suppose we have a trajectory of observations and actions:
 

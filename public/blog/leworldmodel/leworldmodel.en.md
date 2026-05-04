@@ -94,7 +94,7 @@ If the model is trained solely on the prediction error of the next latent vector
 
 ## Formal Formulation
 
-![Figure 02](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-02.png)
+![Figure 02](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-02.png)
 
 Suppose the loss contains only the prediction error:
 
@@ -169,7 +169,7 @@ The scheme is minimalist but fundamental: the model is trained **jointly**, end-
 
 ## Formal Formulation
 
-![Figure 03](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-03.png)
+![Figure 03](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-03.png)
 
 The architecture is defined by two mappings:
 
@@ -226,7 +226,7 @@ where $A$ is the dimensionality of the action space for a given environment (e.g
 
 ## Architectural Details
 
-![Figure 04](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-04.png)
+![Figure 04](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-04.png)
 
 ### Encoder
 
@@ -276,7 +276,7 @@ LeWM is trained entirely in an **offline, reward-free** setting. That is, the mo
 
 ## Formal Formulation
 
-![Figure 05](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-05.png)
+![Figure 05](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-05.png)
 
 The dataset consists of trajectories of length $T$:
 
@@ -313,7 +313,7 @@ The primary useful signal in LeWM is the error between the predicted and true la
 
 ## Formal Formulation
 
-![Figure 06](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-06.png)
+![Figure 06](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-06.png)
 
 The predictive loss in the paper is written as:
 
@@ -433,7 +433,7 @@ But directly testing for normality in high dimensions is difficult. Therefore, t
 
 ---
 
-![Figure 07](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-07.png)
+![Figure 07](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-07.png)
 
 ## Formal Formulation
 
@@ -497,7 +497,7 @@ A key theoretical fact from the paper:
 
 This is directly related to the Cramér–Wold theorem.
 
-![Figure 08](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-08.png)
+![Figure 08](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-08.png)
 
 In the paper, this is expressed as a weak equivalence:
 
@@ -932,7 +932,7 @@ This reduces the impact of model bias and autoregressive drift.
 
 LeWM does not optimize actions via gradients through the environment. Instead, it uses a **zero-order sampling-based optimizer**—the Cross-Entropy Method. It iteratively samples many action sequences, evaluates them in the world model, selects the best ones, and shifts the sampling distribution toward these elite solutions.
 
-![Figure 09](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-09.png)
+![Figure 09](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-09.png)
 
 ---
 
@@ -1199,7 +1199,7 @@ On **Two-Room**, LeWM underperforms, and the authors offer a clear explanation: 
 
 A control success rate alone is not enough. It is possible to build a good planner even with a latent space that is not fully interpretable. Therefore, the paper additionally investigates whether **physical quantities** can be extracted from latent vectors. For this purpose, linear and nonlinear probes are trained.
 
-![Figure 10](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-10.png)
+![Figure 10](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-10.png)
 
 ---
 
@@ -1453,7 +1453,7 @@ The best results are achieved with moderate dropout $p=0.1$. Both too low and to
 
 ## 22. Mathematical Meaning of the Entire Architecture as a Unified System
 
-![Figure 11](/warp-zone-folio/blog/leworldmodel/Infographic/RU/Figure-11.png)
+![Figure 11](/warp-zone-folio/blog/leworldmodel/Infographic/EN/Figure-11.png)
 
 We can now assemble everything into a single logical chain.
 

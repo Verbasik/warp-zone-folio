@@ -50,6 +50,18 @@ export const blogConfig: BlogPost[] = [
     status: "published",
     hasEnglish: true,
   },
+  {
+    slug: "deepseek-v4",
+    title: "DeepSeek-V4: Как обработать миллион токенов без квадратичной катастрофы",
+    description:
+      "Технический разбор архитектурных инноваций DeepSeek-V4: гибридное внимание CSA+HCA, переработанные остаточные связи, специализированный оптимизатор и многоэтапный пайплайн пост-тренировки. Как достичь контекста в 1M токенов при 27% FLOPs от предыдущего поколения.",
+    date: "2026-05-05",
+    tags: ["ML", "LLM", "Attention", "Architecture", "Long Context", "Inference"],
+    readingTime: 60,
+    featured: true,
+    status: "published",
+    hasEnglish: false,
+  },
 
 ];
 

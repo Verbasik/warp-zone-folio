@@ -16,7 +16,7 @@
 
 ### 1. Гибридное внимание: CSA + HCA
 
-![Figure 1](/warp-zone-folio/public/blog/DeepSeek-V4/Infographic/RU/Figure-01.png)
+![Figure 1](/warp-zone-folio/public/blog/deepseek-v4/Infographic/RU/Figure-01.png)
 
 Стандартный механизм self-attention имеет квадратичную сложность по длине последовательности. На миллионе токенов это «запретительное узкое место». DeepSeek-V4 решает проблему, заменяя обычное внимание гибридной схемой из двух взаимодополняющих механизмов — **Compressed Sparse Attention (CSA)** и **Heavily Compressed Attention (HCA)**, которые применяются в чередующихся слоях модели.
 
@@ -47,7 +47,7 @@ $$s_{h,i,j} = \frac{\exp(z_{h,i,j})}{\sum_k \exp(z_{h,i,k}) + \exp(z'_h)}$$
 
 ## Проблема, которую решает CSA
 
-![Figure 2](/warp-zone-folio/public/blog/DeepSeek-V4/Infographic/RU/Figure-02.png)
+![Figure 2](/warp-zone-folio/public/blog/deepseek-v4/Infographic/RU/Figure-02.png)
 
 Стандартный механизм self-attention вычисляет попарные скоры между всеми токенами последовательности. Для последовательности длиной $n$ это означает $n^2$ операций:
 
@@ -110,7 +110,7 @@ CSA состоит из четырёх связанных блоков, рабо
 
 ## Шаг 1: Сжатие KV-кэша с перекрытием
 
-![Figure 3](/warp-zone-folio/public/blog/DeepSeek-V4/Infographic/RU/Figure-03.png)
+![Figure 3](/warp-zone-folio/public/blog/deepseek-v4/Infographic/RU/Figure-03.png)
 
 ### Два ряда латентных представлений
 
@@ -167,6 +167,8 @@ $$Z_j^a = \frac{\exp(C_j^a \cdot \mathbf{w}^a)}{\sum_{j'=mi}^{m(i+1)-1} \exp(C_{
 ---
 
 ## Шаг 2: Lightning Indexer — разреженный отбор блоков
+
+![Figure 04](/warp-zone-folio/blog/deepseek-v4/Infographic/RU/Figure-01.png)
 
 После сжатия в кэше находится $n/m$ блоков. Для каждого токена запроса нужно отобрать $k$ наиболее релевантных. Наивный подход — вычислить скоры со всеми блоками — снова даёт $O(n/m \cdot n_h \cdot c)$ операций. Lightning Indexer делает это эффективно за счёт **низкоранговости** и **FP4-вычислений**.
 

@@ -59,7 +59,7 @@ export const blogConfig: BlogPost[] = [
     tags: ["ML", "LLM", "Attention", "Architecture", "Long Context", "Inference"],
     readingTime: 60,
     featured: true,
-    status: "published",
+    status: "draft",
     hasEnglish: false,
   },
 

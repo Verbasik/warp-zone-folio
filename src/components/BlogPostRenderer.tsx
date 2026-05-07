@@ -4,22 +4,37 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import "katex/dist/katex.min.css";
 import type { Components } from "react-markdown";
+import { extractText, slugify } from "@/lib/slugify";
 
 interface BlogPostRendererProps {
   content: string;
 }
 
 const components: Components = {
-  h2: ({ children }) => (
-    <h2 className="font-mono text-xl font-bold text-primary mt-10 mb-4 pb-2 border-b-2 border-primary/30">
-      {children}
-    </h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="font-mono text-lg font-bold text-secondary mt-8 mb-3">
-      {children}
-    </h3>
-  ),
+  h2: ({ children }) => {
+    const id = slugify(extractText(children));
+    return (
+      <h2
+        id={id}
+        data-heading-level="2"
+        className="font-mono text-xl font-bold text-primary mt-10 mb-4 pb-2 border-b-2 border-primary/30 scroll-mt-24"
+      >
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children }) => {
+    const id = slugify(extractText(children));
+    return (
+      <h3
+        id={id}
+        data-heading-level="3"
+        className="font-mono text-lg font-bold text-secondary mt-8 mb-3 scroll-mt-24"
+      >
+        {children}
+      </h3>
+    );
+  },
   p: ({ children }) => (
     <p className="font-mono text-sm leading-7 text-foreground/90 mb-4">
       {children}
@@ -91,7 +106,7 @@ const components: Components = {
 
 export const BlogPostRenderer = ({ content }: BlogPostRendererProps) => {
   return (
-    <div className="blog-content max-w-3xl mx-auto">
+    <div className="blog-content">
       <ReactMarkdown
         remarkPlugins={[remarkMath]}
         rehypePlugins={[rehypeRaw, rehypeKatex]}

@@ -48,12 +48,16 @@ export const ScrollyProvider = ({
   });
 
   // Активной считаем только сцену, явно зарегистрированную в реестре.
-  // Это защищает от попадания посторонних заголовков из markdown,
+  // Это защищает от попадания посторонних якорей из markdown,
   // для которых сцены не предусмотрены.
   const activeSceneId =
     observedId && sceneIds.has(observedId) ? observedId : null;
 
-  const progress = useScrollProgress({ activeId: activeSceneId, resetKey });
+  const progress = useScrollProgress({
+    activeId: activeSceneId,
+    selector: sceneSelector || "h2[id], h3[id]",
+    resetKey,
+  });
 
   const value = useMemo<ScrollyContextValue>(
     () => ({

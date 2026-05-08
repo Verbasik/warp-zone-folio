@@ -6,8 +6,8 @@ import { useScrollyContext } from "./ScrollyContext";
  * показывает нейтральный плейсхолдер в стиле сайта.
  *
  * Геометрия:
- *   - sticky top-24: прилипает чуть ниже фиксированной Navigation-
- *     панели (Navigation имеет фактическую высоту ~80px + запас).
+ *   - sticky top-1/2 + translateY(-50%): держит сцену по центру
+ *     вертикальной оси viewport.
  *   - max-w-[min(100%,calc(100vh-7rem))] + aspect-square:
  *     визуальное окно остаётся квадратным, но растягивается на всю
  *     правую колонку и ограничивается высотой viewport, чтобы не
@@ -24,17 +24,12 @@ export const SceneStage = () => {
   const activeScene = scenes.find((s) => s.id === activeSceneId);
   const ActiveComponent = activeScene?.component;
 
+  if (!ActiveComponent) return null;
+
   return (
-    <div className="sticky top-24 flex justify-center">
+    <div className="sticky top-1/2 flex -translate-y-1/2 justify-end">
       <div className="aspect-square w-full max-w-[min(100%,calc(100vh-7rem))] border-2 border-primary/40 bg-background/50 p-3 xl:p-4 relative overflow-hidden">
-        {ActiveComponent ? (
-          <ActiveComponent progress={progress} />
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center font-mono text-xs text-foreground/40 gap-2">
-            <span className="text-primary/60">[ SCENE_IDLE ]</span>
-            <span>Прокрутите статью, чтобы увидеть визуализацию</span>
-          </div>
-        )}
+        <ActiveComponent progress={progress} />
 
         {/* Debug-лейбл активной сцены — пригодится при отладке
             sync-механизма; в production-сборке его уберём

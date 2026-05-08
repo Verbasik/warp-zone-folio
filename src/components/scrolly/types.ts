@@ -1,13 +1,13 @@
 import type { ComponentType } from "react";
 
 /**
- * Описание одной сцены визуализации. Привязывается к id заголовка
- * h2/h3 в посте. SceneStage рендерит компонент component, когда
+ * Описание одной сцены визуализации. Привязывается к id DOM-якоря
+ * в посте. SceneStage рендерит компонент component, когда
  * activeSceneId === id.
  */
 export interface Scene {
   /**
-   * id заголовка-якоря (как в DOM, после slugify).
+   * id DOM-якоря (как в DOM, после slugify).
    */
   id: string;
   /**

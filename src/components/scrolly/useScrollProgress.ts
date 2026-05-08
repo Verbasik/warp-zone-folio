@@ -3,24 +3,23 @@ import { useEffect, useState } from "react";
 interface UseScrollProgressOptions {
   /**
    * id текущего активного раздела. Прогресс считается от
-   * момента, когда заголовок раздела пересекает якорную
+   * момента, когда якорь раздела пересекает якорную
    * горизонтальную линию (anchorRatio * viewportHeight),
-   * до момента, когда такую же линию пересекает следующий
-   * заголовок.
+   * до момента, когда такую же линию пересекает следующий якорь.
    */
   activeId: string | null;
   /**
-   * Селектор заголовков, среди которых определяется «следующий
+   * Селектор якорей, среди которых определяется «следующий
    * раздел». По умолчанию совпадает с useHeadingObserver,
    * чтобы оба хука согласовывались по DOM-узлам.
    */
   selector?: string;
   /**
    * Доля от верха viewport, в которой стоит «якорь прогресса».
-   * 0.7 означает: progress = 0 в момент, когда верх заголовка
+   * 0.7 означает: progress = 0 в момент, когда верх якоря
    * находится на 70% высоты viewport (то есть только-только
    * показался снизу), и progress = 1 — когда такую же линию
-   * пересекает следующий заголовок. Это совпадает с тем, как
+   * пересекает следующий якорь. Это совпадает с тем, как
    * scrollytelling-сайты задают «начало» и «конец» сцены —
    * чтобы у пользователя не было «мёртвой зоны», в которой
    * сцена активна, но визуально пустая.
@@ -44,11 +43,11 @@ const isInsideClosedDetails = (element: HTMLElement) =>
  * Якорная модель прогресса:
  *   - в viewport проводится горизонтальная якорная линия
  *     y = anchorRatio * viewportHeight (по умолчанию 70%);
- *   - progress = 0 в момент, когда верх активного заголовка
+ *   - progress = 0 в момент, когда верх активного якоря
  *     совпадает с этой линией (т.е. только-только показался
  *     снизу при скролле вниз);
  *   - progress = 1 в момент, когда такую же линию пересекает
- *     ВЕРХ следующего заголовка;
+ *     ВЕРХ следующего якоря;
  *   - между — линейная интерполяция.
  *
  * Эта модель устраняет «мёртвую зону»: useHeadingObserver
@@ -87,11 +86,11 @@ export const useScrollProgress = ({
       return;
     }
 
-    const allHeadings = Array.from(
+    const anchors = Array.from(
       document.querySelectorAll<HTMLElement>(selector),
-    ).filter((heading) => !isInsideClosedDetails(heading));
-    const idx = allHeadings.indexOf(active);
-    const next = idx >= 0 ? allHeadings[idx + 1] : undefined;
+    ).filter((anchor) => !isInsideClosedDetails(anchor));
+    const idx = anchors.indexOf(active);
+    const next = idx >= 0 ? anchors[idx + 1] : undefined;
 
     let raf = 0;
     let last = -1;
@@ -105,7 +104,7 @@ export const useScrollProgress = ({
 
       if (nextTop === null || nextTop <= activeTop) {
         // Последний раздел: прогресс растёт по тому, как
-        // активный заголовок прошёл якорную линию относительно
+        // активный якорь прошёл якорную линию относительно
         // своей высоты.
         const span = active.offsetHeight + 1;
         const p = clamp01((anchor - activeTop) / span);
@@ -126,7 +125,7 @@ export const useScrollProgress = ({
       }
       // (anchor - activeTop) — сколько раздел уже прошёл
       // мимо якоря; (nextTop - activeTop) — полная длина
-      // секции до следующего заголовка.
+      // секции до следующего якоря.
       const p = clamp01((anchor - activeTop) / denom);
       if (Math.abs(p - last) > 0.005) {
         last = p;

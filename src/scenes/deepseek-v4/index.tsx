@@ -1,28 +1,26 @@
 import type { Scene } from "@/components/scrolly/types";
-import { SceneArchOverview } from "./SceneArchOverview";
-import { SceneContextScale } from "./SceneContextScale";
+import { SceneCompressionVideo } from "./SceneCompressionVideo";
+import { SceneHybridAttentionVideo } from "./SceneHybridAttentionVideo";
 
 /**
- * Реестр сцен для поста deepseek-v4. После ревизии визуального
- * направления оставляем только первые две опорные сцены: intro и
- * overview Part I. Остальные разделы будут добавляться заново,
- * медленно и по одному, после адаптации визуального языка.
+ * Реестр сцен для поста deepseek-v4. Сцены привязаны к figure-якорям,
+ * которые BlogPostRenderer создаёт из alt-текста markdown-картинок:
+ * `![Figure 03](...)` превращается в <figure id="figure-03">.
  *
- * id каждой сцены ОБЯЗАН совпадать с id, который BlogPostRenderer
- * выдаёт через slugify(текст заголовка). Несовпадение приводит
- * к тому, что ScrollyProvider никогда не активирует сцену — этот
- * случай специально логируется через debug-лейбл SceneStage.
+ * id каждой сцены ОБЯЗАН совпадать с id соответствующего figure.
+ * Несовпадение приведёт к тому, что ScrollyProvider никогда не
+ * активирует сцену.
  */
 
 export const deepseekV4Scenes: Scene[] = [
   {
-    id: "vvedenie",
-    label: "Введение",
-    component: SceneContextScale,
+    id: "figure-01",
+    label: "Figure 01",
+    component: SceneHybridAttentionVideo,
   },
   {
-    id: "chast-i-arhitekturnye-innovacii",
-    label: "Часть I",
-    component: SceneArchOverview,
+    id: "figure-03",
+    label: "Figure 03",
+    component: SceneCompressionVideo,
   },
 ];

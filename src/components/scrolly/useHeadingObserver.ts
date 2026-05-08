@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
  */
 export interface UseHeadingObserverOptions {
   /**
-   * CSS-селектор заголовков, за которыми ведётся наблюдение.
+   * CSS-селектор DOM-якорей, за которыми ведётся наблюдение.
    * По умолчанию — все h2/h3 c id внутри блога.
    */
   selector?: string;
@@ -32,19 +32,17 @@ const isInsideClosedDetails = (element: HTMLElement) =>
   element.closest("details:not([open])") !== null;
 
 /**
- * Возвращает id заголовка, который сейчас находится в активной зоне
- * viewport. Если активной зоны не достиг ни один заголовок (например,
+ * Возвращает id якоря, который сейчас находится в активной зоне
+ * viewport. Если активной зоны не достиг ни один якорь (например,
  * пользователь над первым заголовком) — возвращает null.
  *
  * Алгоритм:
  *   1. Подписываемся через IntersectionObserver на все заголовки,
  *      подходящие под selector.
- *   2. На каждое изменение/scroll пересчитываем заголовки, чьи
+ *   2. На каждое изменение/scroll пересчитываем якоря, чьи
  *      top-edge попадают в центральную 20% зону viewport/root.
- *   3. Активным считается заголовок, чей top-edge ближе всего к
- *      центральной линии viewport/root. Это важно для соседних h2/h3:
- *      если брать просто «самый верхний», h2 может удерживать сцену
- *      и не дать следующему h3 стабильно активироваться.
+ *   3. Активным считается якорь, чей top-edge ближе всего к
+ *      центральной линии viewport/root.
  *
  * Хук намеренно не возвращает прогресс внутри шага — для этого
  * предусмотрен отдельный useScrollProgress, чтобы оба ответственных
@@ -62,10 +60,10 @@ export const useHeadingObserver = ({
     if (typeof IntersectionObserver === "undefined") return;
 
     const root = rootRef?.current ?? null;
-    const headings = Array.from(
+    const anchors = Array.from(
       (root ?? document).querySelectorAll<HTMLElement>(selector),
     );
-    if (headings.length === 0) return;
+    if (anchors.length === 0) return;
 
     let frame = 0;
 
@@ -80,18 +78,18 @@ export const useHeadingObserver = ({
       let closest: HTMLElement | null = null;
       let closestDistance = Number.POSITIVE_INFINITY;
 
-      for (const heading of headings) {
-        if (isInsideClosedDetails(heading)) continue;
+      for (const anchor of anchors) {
+        if (isInsideClosedDetails(anchor)) continue;
 
-        const headingTop = heading.getBoundingClientRect().top;
-        if (headingTop < bandTop || headingTop > bandBottom) continue;
+        const anchorTop = anchor.getBoundingClientRect().top;
+        if (anchorTop < bandTop || anchorTop > bandBottom) continue;
 
-        const distance = Math.abs(headingTop - activeLine);
+        const distance = Math.abs(anchorTop - activeLine);
         if (
           distance < closestDistance ||
-          (distance === closestDistance && closest && heading.offsetTop < closest.offsetTop)
+          (distance === closestDistance && closest && anchor.offsetTop < closest.offsetTop)
         ) {
-          closest = heading;
+          closest = anchor;
           closestDistance = distance;
         }
       }
@@ -112,7 +110,7 @@ export const useHeadingObserver = ({
       { root, rootMargin, threshold: 0 },
     );
 
-    for (const heading of headings) observer.observe(heading);
+    for (const anchor of anchors) observer.observe(anchor);
     updateActive();
 
     window.addEventListener("scroll", scheduleUpdate, { passive: true });

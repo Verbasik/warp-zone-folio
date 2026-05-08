@@ -22,20 +22,21 @@ interface ScrollyLayoutProps {
  *     скрыт через display: none, потому что sticky-колонка слишком
  *     узка и визуализация теряет читаемость. На этом этапе мобильные
  *     читатели получают обычный текстовый пост.
- *   - >=lg: grid из двух колонок. Левая колонка остаётся в
- *     комфортной текстовой ширине, а правая забирает всё доступное
- *     пространство под крупный sticky-холст. max-w-[100rem] даёт
- *     сцене заметно больше воздуха на широких экранах.
+ *   - >=lg: текстовая колонка центрируется относительно всей
+ *     страницы, а stage становится правым overlay-слоем. Так
+ *     визуализация не сдвигает основной текст влево.
  *
  * Layout сознательно не оборачивает stage в sticky сам — это
- * ответственность SceneStage (следующий шаг). Так компонент
- * остаётся максимально предсказуемым: только сетка, ничего больше.
+ * ответственность SceneStage. Здесь задаётся только геометрия:
+ * центрированный текст и правая зона для визуализации.
  */
 export const ScrollyLayout = ({ text, stage }: ScrollyLayoutProps) => {
   return (
-    <div className="mx-auto w-full max-w-[min(100rem,calc(100vw-2rem))] grid grid-cols-1 lg:grid-cols-[minmax(0,680px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,720px)_minmax(0,1fr)] lg:gap-10 xl:gap-12">
-      <div className="min-w-0">{text}</div>
-      <div className="hidden lg:block min-w-0 w-full">{stage}</div>
+    <div className="relative mx-auto w-full max-w-[min(118rem,calc(100vw-1rem))]">
+      <div className="min-w-0 w-full max-w-[60rem] mx-auto">{text}</div>
+      <div className="absolute inset-y-0 right-0 z-10 hidden lg:block w-[clamp(17rem,23vw,30rem)]">
+        {stage}
+      </div>
     </div>
   );
 };

@@ -10,6 +10,13 @@ interface BlogPostRendererProps {
   content: string;
 }
 
+const getFigureAnchorId = (src?: string, alt?: string) => {
+  if (alt?.trim()) return slugify(alt);
+
+  const fileName = src?.split("/").pop()?.replace(/\.[^.]+$/, "");
+  return fileName ? slugify(fileName) : undefined;
+};
+
 const components: Components = {
   h2: ({ children }) => {
     const id = slugify(extractText(children));
@@ -71,23 +78,31 @@ const components: Components = {
       </pre>
     );
   },
-  img: ({ src, alt }) => (
-    <figure className="my-8">
-      <div className="border-2 border-primary/40 p-2 bg-background/50">
-        <img
-          src={src}
-          alt={alt}
-          className="w-full h-auto block"
-          loading="lazy"
-        />
-      </div>
-      {alt && (
-        <figcaption className="font-mono text-xs text-foreground/50 text-center mt-2">
-          {alt}
-        </figcaption>
-      )}
-    </figure>
-  ),
+  img: ({ src, alt }) => {
+    const figureId = getFigureAnchorId(src, alt);
+
+    return (
+      <figure
+        id={figureId}
+        data-scrolly-anchor={figureId}
+        className="my-8 scroll-mt-24"
+      >
+        <div className="border-2 border-primary/40 p-2 bg-background/50">
+          <img
+            src={src}
+            alt={alt}
+            className="w-full h-auto block"
+            loading="lazy"
+          />
+        </div>
+        {alt && (
+          <figcaption className="font-mono text-xs text-foreground/50 text-center mt-2">
+            {alt}
+          </figcaption>
+        )}
+      </figure>
+    );
+  },
   strong: ({ children }) => (
     <strong className="text-primary font-bold">{children}</strong>
   ),

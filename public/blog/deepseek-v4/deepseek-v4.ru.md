@@ -222,6 +222,8 @@ $$\hat{I}_{t,s} = \mathrm{Quant}_{\mathrm{BF16}}\!\left(I_{t,s}\right) \xrightar
 
 ### Multi-Query Attention (MQA)
 
+![Figure 05](/warp-zone-folio/blog/deepseek-v4/Infographic/RU/Figure-05.png)
+
 Все $n_h$ голов запроса разделяют **один** сжатый KV-вектор $\tilde{K}_i^{\mathrm{Comp}}$:
 
 $$\mathbf{q}_{t,h} = \mathbf{c}_t^Q W_h^{UQ}, \qquad h = 1, \ldots, n_h$$
@@ -261,6 +263,8 @@ $$\mathbf{o}_g = \left[\text{Attn}_{t,h}\right]_{h \in \mathcal{G}_g} W_g^{mid},
 ## Шаг 4: Ветвь скользящего окна
 
 CSA хорошо восстанавливает дальний контекст, но блоки сжатия «размывают» информацию о ближайших токенах — особенно тех, что ещё не вошли в завершённый блок («хвост»). Для компенсации добавляется **отдельная ветвь** с локальным вниманием:
+
+![Figure 06](/warp-zone-folio/blog/deepseek-v4/Infographic/RU/Figure-06.png)
 
 $$\text{Attn}_{\text{local}}(t) = \text{Attention}\!\left(\mathbf{q}_t,\ K_{[t-n_\text{win}, t]},\ V_{[t-n_\text{win}, t]}\right)$$
 

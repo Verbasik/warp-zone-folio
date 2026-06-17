@@ -25,6 +25,15 @@ export const projectsConfig: Project[] = [
     demo: "https://verbasik.github.io/warp-zone-folio/#/blog/turboquant",
     featured: true,
   },
+  {
+    title: "Riemannian-Token-Transformer-Multi-Scale",
+    description:
+      "Imagined-speech EEG decoder that combines Riemannian SPD tokens, multi-scale temporal windows, subject embeddings, and a compact Transformer for 8-class semantic classification.",
+    tags: ["Python", "PyTorch", "EEG", "BCI", "Transformer"],
+    github: "https://github.com/Verbasik/Riemannian-Token-Transformer-Multi-Scale",
+    demo: "https://verbasik.github.io/warp-zone-folio/#/blog/rttmultiscale",
+    featured: true,
+  },
 ];
 
 // Get only featured projects

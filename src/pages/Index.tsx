@@ -3,7 +3,7 @@ import { Starfield } from "@/components/Starfield";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { SkillsSection } from "@/components/sections/SkillsSection";
-// import { ProjectsSection } from "@/components/sections/ProjectsSection"; // Temporarily hidden until real projects are added
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { BlogSection } from "@/components/sections/BlogSection";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -23,7 +23,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        {/* <ProjectsSection /> */} {/* Temporarily hidden until real projects are added */}
+        <ProjectsSection />
         <BlogSection />
         <TimelineSection />
         <ContactSection />

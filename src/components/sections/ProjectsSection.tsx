@@ -76,7 +76,7 @@ export const ProjectsSection = () => {
         {/* View more on GitHub */}
         <div className="text-center mt-12">
           <a
-            href="https://github.com/[GITHUB_USERNAME]"
+            href="https://github.com/Verbasik"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -8,12 +8,17 @@ import { Footer } from "@/components/sections/Footer";
 import { Starfield } from "@/components/Starfield";
 import NotFound from "./NotFound";
 
-const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("ru-RU", {
+const formatDate = (iso: string) => {
+  const date = new Date(iso);
+
+  if (Number.isNaN(date.getTime())) return iso;
+
+  return date.toLocaleDateString("ru-RU", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+};
 
 type Lang = "ru" | "en";
 

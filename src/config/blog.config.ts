@@ -2,7 +2,7 @@
  * Blog Configuration
  *
  * Add new posts here. The `slug` must match the folder name in public/blog/{slug}/
- * and the markdown file must be at public/blog/{slug}/{slug}.md
+ * and the Russian markdown file must be at public/blog/{slug}/{slug}.ru.md
  */
 
 export interface BlogPost {
@@ -51,11 +51,23 @@ export const blogConfig: BlogPost[] = [
     hasEnglish: true,
   },
   {
+    slug: "rttmultiscale",
+    title: "Riemannian-Token-Transformer-Multi-Scale: декодирование воображаемой речи из ЭЭГ через SPD-токены",
+    description:
+      "Технический разбор RTTMultiScale — пайплайна для closed-vocabulary классификации воображаемой речи по неинвазивной ЭЭГ. SPD-токены, многоуровневые временные масштабы и TransformerEncoder для устойчивого baseline без заявлений о полноценном EEG-to-text.",
+    date: "2026-06-29",
+    tags: ["ML", "EEG", "BCI", "Transformer", "Riemannian Geometry"],
+    readingTime: 60,
+    featured: true,
+    status: "draft",
+    hasEnglish: false,
+  },
+  {
     slug: "deepseek-v4",
     title: "DeepSeek-V4: Как обработать миллион токенов без квадратичной катастрофы",
     description:
       "Технический разбор архитектурных инноваций DeepSeek-V4: гибридное внимание CSA+HCA, переработанные остаточные связи, специализированный оптимизатор и многоэтапный пайплайн пост-тренировки. Как достичь контекста в 1M токенов при 27% FLOPs от предыдущего поколения.",
-    date: "2026-05-05",
+    date: "when will free time",
     tags: ["ML", "LLM", "Attention", "Architecture", "Long Context", "Inference"],
     readingTime: 60,
     featured: true,

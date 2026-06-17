@@ -2,12 +2,17 @@ import { Link } from "react-router-dom";
 import { Calendar, Clock, Tag } from "lucide-react";
 import { getFeaturedPosts } from "@/config/blog.config";
 
-const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("ru-RU", {
+const formatDate = (iso: string) => {
+  const date = new Date(iso);
+
+  if (Number.isNaN(date.getTime())) return iso;
+
+  return date.toLocaleDateString("ru-RU", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+};
 
 export const BlogSection = () => {
   const posts = getFeaturedPosts();

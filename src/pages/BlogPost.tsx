@@ -6,10 +6,6 @@ import { BlogPostRenderer } from "@/components/BlogPostRenderer";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/sections/Footer";
 import { Starfield } from "@/components/Starfield";
-import { ScrollyProvider } from "@/components/scrolly/ScrollyProvider";
-import { ScrollyLayout } from "@/components/scrolly/ScrollyLayout";
-import { SceneStage } from "@/components/scrolly/SceneStage";
-import { getScenesForSlug } from "@/scenes/registry";
 import NotFound from "./NotFound";
 
 const formatDate = (iso: string) =>
@@ -53,9 +49,6 @@ const BlogPost = () => {
   }, [post, lang]);
 
   if (!post) return <NotFound />;
-
-  const scenes = getScenesForSlug(post.slug);
-  const hasScenes = scenes !== undefined && scenes.length > 0;
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
@@ -147,23 +140,8 @@ const BlogPost = () => {
             </div>
           )}
 
-          {!loading && !error && !hasScenes && (
-            <BlogPostRenderer content={content} />
-          )}
+          {!loading && !error && <BlogPostRenderer content={content} />}
         </div>
-
-        {/* Scroll-driven layout: рендерится только для постов
-            с зарегистрированными сценами. Header выше остаётся в
-            max-w-3xl, чтобы шапка не «прыгала» при переключении
-            между обычными и scroll-driven постами. */}
-        {!loading && !error && hasScenes && scenes && (
-          <ScrollyProvider scenes={scenes} resetKey={`${post.slug}-${lang}`}>
-            <ScrollyLayout
-              text={<BlogPostRenderer content={content} />}
-              stage={<SceneStage />}
-            />
-          </ScrollyProvider>
-        )}
       </main>
 
       <Footer />

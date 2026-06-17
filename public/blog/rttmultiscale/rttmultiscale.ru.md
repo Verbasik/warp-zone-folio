@@ -1221,8 +1221,6 @@ Attention pooling можно понимать как ответ модели н�
 
 ## 15. Subject embeddings: мягкая персонализация известных субъектов
 
-![Figure 08](/warp-zone-folio/blog/rttmultiscale/assets/Figure-08.png)
-
 ### Что под капотом?
 
 EEG сильно зависит от субъекта: анатомия, качество контакта электродов, индивидуальная стратегия воображения, уровень шума и устойчивость внимания различаются между людьми.
@@ -1387,8 +1385,6 @@ SD дороже:
 ---
 
 ## 17. Class-Balanced Focal Loss
-
-![Figure 09](/warp-zone-folio/blog/rttmultiscale/assets/Figure-09.png)
 
 ### Что под капотом?
 
@@ -1628,8 +1624,6 @@ $$
 ---
 
 ## 20. Результаты: что получилось
-
-![Figure 10](/warp-zone-folio/blog/rttmultiscale/assets/Figure-10.png)
 
 ### Что под капотом?
 
@@ -1948,8 +1942,6 @@ selective risk тоже должен падать
 
 ## 25. Воспроизводимость пайплайна
 
-![Figure 11](/warp-zone-folio/blog/rttmultiscale/assets/Figure-11.png)
-
 ### Что под капотом?
 
 Проект устроен как воспроизводимый research pipeline. Для повторения эксперимента нужны два слоя:
@@ -2124,8 +2116,6 @@ $$
 ---
 
 ## 28. Математический смысл всей конструкции как единой системы
-
-![Figure 12](/warp-zone-folio/blog/rttmultiscale/assets/Figure-12.png)
 
 Теперь можно собрать всю модель в одну цепочку.
 

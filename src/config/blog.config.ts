@@ -53,14 +53,17 @@ export const blogConfig: BlogPost[] = [
   {
     slug: "rttmultiscale",
     title: "Riemannian-Token-Transformer-Multi-Scale: декодирование воображаемой речи из ЭЭГ через SPD-токены",
+    titleEn: "Riemannian-Token-Transformer-Multi-Scale: decoding imagined speech from EEG through SPD tokens",
     description:
       "Технический разбор RTTMultiScale — пайплайна для closed-vocabulary классификации воображаемой речи по неинвазивной ЭЭГ. SPD-токены, многоуровневые временные масштабы и TransformerEncoder для устойчивого baseline без заявлений о полноценном EEG-to-text.",
+    descriptionEn:
+      "A technical breakdown of RTTMultiScale — a closed-vocabulary imagined-speech EEG classification pipeline using SPD tokens, multi-scale temporal windows, subject embeddings, and a compact TransformerEncoder.",
     date: "2026-06-29",
     tags: ["ML", "EEG", "BCI", "Transformer", "Riemannian Geometry"],
     readingTime: 60,
     featured: true,
     status: "draft",
-    hasEnglish: false,
+    hasEnglish: true,
   },
   {
     slug: "deepseek-v4",

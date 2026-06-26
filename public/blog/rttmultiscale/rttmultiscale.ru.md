@@ -2560,21 +2560,6 @@ $$
 
 # 31. Источник
 
-Основной источник:
-
-```text
-Классификация воображаемой речи из ЭЭГ:
-риманово SPD-представление и мультимасштабная трансформерная агрегация
-Вербецкий Эдуард Игоревич, 2026
-```
-
-Репозиторий:
-
-```text
-Verbasik/Riemannian-Token-Transformer-Multi-Scale
-https://github.com/Verbasik/Riemannian-Token-Transformer-Multi-Scale
-```
-
 Связанный датасет:
 
 ```bibtex
@@ -2586,5 +2571,20 @@ https://github.com/Verbasik/Riemannian-Token-Transformer-Multi-Scale
   pages   = {1265},
   year    = {2024},
   doi     = {10.1038/s41597-024-04114-1}
+}
+```
+
+# Citation
+
+```bibtex
+@thesis{verbetskii2026rttmultiscale,
+title       = {Riemannian geometric features and transformer for decoding imagined speech from EEG},
+author      = {Verbetskii, Eduard Igorevich},
+institution = {Moscow Aviation Institute (National Research University)},
+location    = {Moscow, Russia},
+year        = {2026},
+type        = {Master of Science},
+note        = {Institute No. 8 `Computer Science and Applied Mathematics''; educational program `Machine Learning and Data Analysis''},
+langid      = {russian}
 }
 ```

@@ -18,6 +18,27 @@ const getFigureAnchorId = (src?: string, alt?: string) => {
 };
 
 const components: Components = {
+  a: ({ href, children, ...props }) => {
+    const isLocalAnchor = href?.startsWith("#");
+
+    return (
+      <a
+        {...props}
+        href={href}
+        onClick={(event) => {
+          if (!isLocalAnchor || !href) return;
+
+          event.preventDefault();
+          const target = document.getElementById(
+            decodeURIComponent(href.slice(1))
+          );
+          target?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+      >
+        {children}
+      </a>
+    );
+  },
   h2: ({ children }) => {
     const id = slugify(extractText(children));
     return (

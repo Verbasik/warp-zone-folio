@@ -62,7 +62,7 @@ export const blogConfig: BlogPost[] = [
     tags: ["ML", "EEG", "BCI", "Transformer", "Riemannian Geometry"],
     readingTime: 60,
     featured: true,
-    status: "draft",
+    status: "published",
     hasEnglish: true,
   },
   {

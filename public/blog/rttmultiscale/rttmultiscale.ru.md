@@ -1,41 +1,5 @@
 # Riemannian-Token-Transformer-Multi-Scale: декодирование воображаемой речи из ЭЭГ через SPD-токены
 
-## Оглавление
-
-- [1. Зачем вообще нужен такой класс моделей](#1-zachem-voobsche-nuzhen-takoj-klass-modelej)
-- [2. Что именно решает модель и чего она не решает](#2-chto-imenno-reshaet-model-i-chego-ona-ne-reshaet)
-- [3. Датасет Chisco и структура одной пробы](#3-dataset-chisco-i-struktura-odnoj-proby)
-- [4. Почему 39 классов сведены к 8 мета-классам](#4-pochemu-39-klassov-svedeny-k-8-meta-klassam)
-- [5. Зачем здесь SPD-представления](#5-zachem-zdes-spd-predstavleniya)
-- [6. Channel projection: зачем 124 канала сжимаются до 24](#6-channel-projection-zachem-124-kanala-szhimayutsya-do-24)
-- [7. Двухмасштабная оконная токенизация](#7-dvuhmasshtabnaya-okonnaya-tokenizaciya)
-- [8. OAS covariance: зачем нужна shrinkage-ковариация](#8-oas-covariance-zachem-nuzhna-shrinkage-kovariaciya)
-- [9. Correlation SPD matrix: зачем ковариацию переводить в корреляцию](#9-correlation-spd-matrix-zachem-kovariaciyu-perevodit-v-korrelyaciyu)
-- [10. Log-Euclidean map: зачем брать матричный логарифм](#10-log-euclidean-map-zachem-brat-matrichnyj-logarifm)
-- [11. Векторизация верхнего треугольника](#11-vektorizaciya-verhnego-treugolnika)
-- [12. Один SPD-токен по шагам](#12-odin-spd-token-po-shagam)
-- [13. Общая архитектура RTTMultiScale](#13-obschaya-arhitektura-rttmultiscale)
-- [14. CLS - обучаемый глобальный токен-агрегатор](#14-cls-obuchaemyj-globalnyj-token-agregator)
-- [15. Attention pooling: зачем нужен второй summary помимо CLS](#15-attention-pooling-zachem-nuzhen-vtoroj-summary-pomimo-cls)
-- [16. Subject embeddings: мягкая персонализация известных субъектов](#16-subject-embeddings-myagkaya-personalizaciya-izvestnyh-subektov)
-- [17. SI vs SD: две разные исследовательские стратегии](#17-si-vs-sd-dve-raznye-issledovatelskie-strategii)
-- [18. Class-Balanced Focal Loss](#18-class-balanced-focal-loss)
-- [19. Train-only нормализация и анти-утечечный протокол](#19-train-only-normalizaciya-i-anti-utechechnyj-protokol)
-- [20. Протокол оценки и метрики](#20-protokol-ocenki-i-metriki)
-- [21. Результаты: что получилось](#21-rezultaty-chto-poluchilos)
-- [22. Confusion matrix и анализ ошибок](#22-confusion-matrix-i-analiz-oshibok)
-- [23. Численная устойчивость SPD-операций](#23-chislennaya-ustojchivost-spd-operacij)
-- [24. Инференс и confidence](#24-inferens-i-confidence)
-- [25. Политика абстенции](#25-politika-abstencii)
-- [26. Воспроизводимость пайплайна](#26-vosproizvodimost-pajplajna)
-- [27. Ограничения текущего подхода](#27-ogranicheniya-tekuschego-podhoda)
-- [28. Какие абляции нужны дальше](#28-kakie-ablyacii-nuzhny-dalshe)
-- [29. Математический смысл всей конструкции как единой системы](#29-matematicheskij-smysl-vsej-konstrukcii-kak-edinoj-sistemy)
-- [30. Финальный вывод](#30-finalnyj-vyvod)
-- [31. Источник](#31-istochnik)
-
----
-
 ## 1. Зачем вообще нужен такой класс моделей
 
 ![Figure 01](/warp-zone-folio/blog/rttmultiscale/assets/Figure-01.png)

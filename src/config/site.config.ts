@@ -60,11 +60,17 @@ What drives me is the intersection of ambitious research and practical impact. I
 
   education: [
     {
+      year: "2026–2029",
+      title: "PhD Track",
+      company: "HSE University",
+      description: "Educational program Computer Science; scientific specialty Artificial Intelligence and Machine Learning.",
+      status: "ongoing",
+    },
+    {
       year: "2024–2026",
       title: "Master's Degree",
       company: "Moscow Aviation Institute",
       description: "Computational Mathematics and Programming, specializing in Machine Learning and Data Analysis.",
-      status: "ongoing",
     },
     {
       year: "2022–2024",

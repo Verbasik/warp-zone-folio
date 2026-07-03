@@ -146,7 +146,7 @@ But such a constrained setup is useful: it first allows us to check whether ther
 
 ## 3. The Chisco Dataset and the Structure of One Trial
 
-![Figure 03](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-03.png)
+![Figure 02](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-03.png)
 
 ### What is under the hood?
 
@@ -289,7 +289,7 @@ But there is also a risk: semantically heterogeneous original categories may end
 
 ## 5. Why SPD Representations Are Used Here
 
-![Figure 04](/warp-zone-folio/blog/rttmultiscale/assets/Figure-04.png)
+![Figure 03](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-02.png)
 
 ### What is under the hood?
 
@@ -604,7 +604,7 @@ This is not simply channel downsampling. It is a trainable transformation of the
 
 ## 7. Two-Scale Window Tokenization
 
-![Figure 05](/warp-zone-folio/blog/rttmultiscale/assets/Figure-05.png)
+![Figure 04](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-03.png)
 
 ### What is under the hood?
 

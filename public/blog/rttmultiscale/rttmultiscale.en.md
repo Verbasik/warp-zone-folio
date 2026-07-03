@@ -688,7 +688,7 @@ Small windows capture faster changes, while large ones capture more stable conte
 
 ## 8. OAS Covariance: Why Shrinkage Covariance Is Needed
 
-![Figure 06](/warp-zone-folio/blog/rttmultiscale/assets/Figure-06.png)
+![Figure 05](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-04.png)
 
 ### What is under the hood?
 

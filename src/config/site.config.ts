@@ -61,7 +61,7 @@ What drives me is the intersection of ambitious research and practical impact. I
   education: [
     {
       year: "2026–2029",
-      title: "PhD Track",
+      title: "PhD",
       company: "HSE University",
       description: "Educational program Computer Science; scientific specialty Artificial Intelligence and Machine Learning.",
       status: "ongoing",

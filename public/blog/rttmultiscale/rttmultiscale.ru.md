@@ -2,7 +2,7 @@
 
 ## 1. Зачем вообще нужен такой класс моделей
 
-![Figure 01](/warp-zone-folio/blog/rttmultiscale/assets/Figure-01.png)
+![Figure 01](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-01.png)
 
 ### Что под капотом?
 
@@ -67,7 +67,7 @@ $$
 
 ## Наглядная интерпретация
 
-![Figure 02](/warp-zone-folio/blog/rttmultiscale/assets/Figure-02.png)
+![Figure 02](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-02.png)
 
 Если упростить, весь пайплайн можно представить так:
 
@@ -146,7 +146,7 @@ $$
 
 ## 3. Датасет Chisco и структура одной пробы
 
-![Figure 03](/warp-zone-folio/blog/rttmultiscale/assets/Figure-03.png)
+![Figure 03](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-03.png)
 
 ### Что под капотом?
 
@@ -289,7 +289,7 @@ $$
 
 ## 5. Зачем здесь SPD-представления
 
-![Figure 04](/warp-zone-folio/blog/rttmultiscale/assets/Figure-04.png)
+![Figure 04](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-04.png)
 
 ### Что под капотом?
 
@@ -839,7 +839,7 @@ SPD block:
 
 ## 7. Двухмасштабная оконная токенизация
 
-![Figure 05](/warp-zone-folio/blog/rttmultiscale/assets/Figure-05.png)
+![Figure 05](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-05.png)
 
 ### Что под капотом?
 
@@ -923,7 +923,7 @@ $$
 
 ## 8. OAS covariance: зачем нужна shrinkage-ковариация
 
-![Figure 06](/warp-zone-folio/blog/rttmultiscale/assets/Figure-06.png)
+![Figure 06](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-06.png)
 
 ### Что под капотом?
 
@@ -989,7 +989,7 @@ $$
 
 ## 9. Correlation SPD matrix: зачем ковариацию переводить в корреляцию
 
-![Figure 07](/warp-zone-folio/blog/rttmultiscale/assets/Figure-07.png)
+![Figure 07](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-07.png)
 
 ### Что под капотом?
 
@@ -1045,7 +1045,7 @@ $$
 
 ## 10. Log-Euclidean map: зачем брать матричный логарифм
 
-![Figure 08](/warp-zone-folio/blog/rttmultiscale/assets/Figure-08.png)
+![Figure 08](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-08.png)
 
 ### Что под капотом?
 
@@ -1118,7 +1118,7 @@ SPD matrix on curved manifold
 
 ## 11. Векторизация верхнего треугольника
 
-![Figure 09](/warp-zone-folio/blog/rttmultiscale/assets/Figure-09.png)
+![Figure 09](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-09.png)
 
 ### Что под капотом?
 
@@ -1467,7 +1467,7 @@ $$
 
 ## 13. Общая архитектура RTTMultiScale
 
-![Figure 10](/warp-zone-folio/blog/rttmultiscale/assets/Figure-10.png)
+![Figure 10](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-10.png)
 
 ### Что под капотом?
 
@@ -1613,7 +1613,7 @@ $$
 
 ## 14. [CLS] — обучаемый глобальный токен-агрегатор
 
-![Figure 11](/warp-zone-folio/blog/rttmultiscale/assets/Figure-11.png)
+![Figure 11](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-11.png)
 
 В текущем проекте `[CLS]` — это **обучаемый глобальный токен-агрегатор**, который добавляется в начало последовательности SPD-токенов перед `TransformerEncoder`, затем после энкодера берётся как `h[:, 0]` и используется как одна из двух глобальных сводок EEG-примера. Важно: модель **не классифицирует только по `[CLS]`** — она объединяет `[CLS]` с отдельным `attention pooling` по остальным токенам. Код явно делает `combined = torch.cat([h_cls, h_attn], dim=-1)`.
 
@@ -2444,7 +2444,7 @@ SD немного лучше по классово-сбалансированн�
 
 ## 22. Confusion matrix и анализ ошибок
 
-![Figure 12](/warp-zone-folio/blog/rttmultiscale/assets/Figure-12.png)
+![Figure 12](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-12.png)
 
 ### Что под капотом?
 

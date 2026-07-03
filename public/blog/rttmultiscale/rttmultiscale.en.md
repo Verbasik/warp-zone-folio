@@ -4,8 +4,6 @@
 
 ## 1. Why this class of models is needed at all
 
-![Figure 01](/warp-zone-folio/blog/rttmultiscale/assets/Figure-01.png)
-
 ### What is under the hood?
 
 Riemannian-Token-Transformer-Multi-Scale, or **RTTMultiScale** for short, is a pipeline for classifying **imagined speech** from non-invasive EEG. Its task is not to immediately reconstruct arbitrary text from the brain, but to build a reproducible baseline: take an EEG segment from the imagined speech phase and assign it to one of a fixed set of semantic meta-classes.
@@ -69,7 +67,7 @@ $$
 
 ## Visual Interpretation
 
-![Figure 02](/warp-zone-folio/blog/rttmultiscale/assets/Figure-02.png)
+![Figure 01](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-01.png)
 
 If simplified, the whole pipeline can be represented as follows:
 
@@ -148,7 +146,7 @@ But such a constrained setup is useful: it first allows us to check whether ther
 
 ## 3. The Chisco Dataset and the Structure of One Trial
 
-![Figure 03](/warp-zone-folio/blog/rttmultiscale/assets/Figure-03.png)
+![Figure 03](/warp-zone-folio/blog/rttmultiscale/Infographic/RU/Figure-03.png)
 
 ### What is under the hood?
 

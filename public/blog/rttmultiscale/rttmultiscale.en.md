@@ -754,7 +754,7 @@ In practice, an intermediate value is used: the data structure is preserved, but
 
 ## 9. Correlation SPD Matrix: Why Covariance Is Converted into Correlation
 
-![Figure 07](/warp-zone-folio/blog/rttmultiscale/assets/Figure-07.png)
+![Figure 06](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-05.png)
 
 ### What is under the hood?
 
@@ -810,7 +810,7 @@ For a multi-subject EEG task, the second question is usually more robust.
 
 ## 10. Log-Euclidean Map: Why Take the Matrix Logarithm
 
-![Figure 08](/warp-zone-folio/blog/rttmultiscale/assets/Figure-08.png)
+![Figure 07](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-06.png)
 
 ### What is under the hood?
 
@@ -879,7 +879,7 @@ After that, the features become more convenient for linear projection and Transf
 
 ## 11. Vectorization of the Upper Triangle
 
-![Figure 09](/warp-zone-folio/blog/rttmultiscale/assets/Figure-09.png)
+![Figure 08](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-07.png)
 
 ### What is under the hood?
 
@@ -1052,7 +1052,7 @@ The token size is the same: 128. Only the temporal duration of the window from w
 
 ## 13. Overall RTTMultiScale Architecture
 
-![Figure 10](/warp-zone-folio/blog/rttmultiscale/assets/Figure-10.png)
+![Figure 09](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-08.png)
 
 ### What is under the hood?
 
@@ -1170,7 +1170,7 @@ This makes the architecture compact.
 
 ## 14. [CLS] — a Trainable Global Token Aggregator
 
-![Figure 11](/warp-zone-folio/blog/rttmultiscale/assets/Figure-11.png)
+![Figure 10](/warp-zone-folio/blog/rttmultiscale/Infographic/EN/Figure-09.png)
 
 In the current project, `[CLS]` is a **trainable global token aggregator** that is added to the beginning of the SPD-token sequence before the `TransformerEncoder`, then after the encoder it is taken as `h[:, 0]` and used as one of the two global summaries of the EEG example. Importantly, the model **does not classify using only `[CLS]`**: it combines `[CLS]` with separate `attention pooling` over the remaining tokens. The code explicitly does `combined = torch.cat([h_cls, h_attn], dim=-1)`.
 
@@ -2001,7 +2001,7 @@ Therefore, the result is better formulated as:
 
 ## 22. Confusion Matrix and Error Analysis
 
-![Figure 12](/warp-zone-folio/blog/rttmultiscale/assets/Figure-12.png)
+![Figure 11](/warp-zone-folio/blog/rttmultiscale/infographic/RU/assets/Figure-12.png)
 
 ### What is under the hood?
 

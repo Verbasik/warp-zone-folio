@@ -66,12 +66,12 @@ export const blogConfig: BlogPost[] = [
     hasEnglish: true,
   },
   {
-    slug: "deepseek-v4",
-    title: "DeepSeek-V4: Как обработать миллион токенов без квадратичной катастрофы",
+    slug: "fugu-by-sakana-ai",
+    title: "Sakana Fugu: одна модель или оркестр под единым API?",
     description:
-      "Технический разбор архитектурных инноваций DeepSeek-V4: гибридное внимание CSA+HCA, переработанные остаточные связи, специализированный оптимизатор и многоэтапный пайплайн пост-тренировки. Как достичь контекста в 1M токенов при 27% FLOPs от предыдущего поколения.",
-    date: "when will free time",
-    tags: ["ML", "LLM", "Attention", "Architecture", "Long Context", "Inference"],
+      "Sakana Fugu под капотом: routing, Fugu-Ultra, TRINITY, Conductor, benchmark-аудит, стоимость, latency и production-риски.",
+    date: "2026-07-31",
+    tags: ["AI", "LLM", "Agents", "Routing", "Systems"],
     readingTime: 60,
     featured: true,
     status: "draft",

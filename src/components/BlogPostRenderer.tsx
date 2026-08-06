@@ -1,4 +1,7 @@
+import { useEffect, useId, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import mermaid from "mermaid";
+import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
@@ -15,6 +18,73 @@ const getFigureAnchorId = (src?: string, alt?: string) => {
 
   const fileName = src?.split("/").pop()?.replace(/\.[^.]+$/, "");
   return fileName ? slugify(fileName) : undefined;
+};
+
+interface MermaidDiagramProps {
+  chart: string;
+}
+
+const MermaidDiagram = ({ chart }: MermaidDiagramProps) => {
+  const id = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+  const [svg, setSvg] = useState("");
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    setSvg("");
+    setHasError(false);
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme: "base",
+      themeVariables: {
+        background: "transparent",
+        primaryColor: "#10182a",
+        primaryTextColor: "#f4f7fb",
+        primaryBorderColor: "#18d7f2",
+        lineColor: "#18d7f2",
+        secondaryColor: "#1a2238",
+        tertiaryColor: "#1a2238",
+      },
+    });
+
+    mermaid
+      .render(`mermaid-${id}`, chart)
+      .then(({ svg: renderedSvg }) => {
+        if (isCurrent) setSvg(renderedSvg);
+      })
+      .catch(() => {
+        if (isCurrent) setHasError(true);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [chart, id]);
+
+  if (hasError) {
+    return (
+      <pre className="bg-background border-2 border-destructive/50 p-4 my-4 overflow-x-auto">
+        <code className="font-mono text-xs text-foreground/90">{chart}</code>
+      </pre>
+    );
+  }
+
+  if (!svg) {
+    return (
+      <div className="my-8 border-2 border-primary/40 bg-background/50 p-4 font-mono text-xs text-foreground/50">
+        RENDERING_DIAGRAM_
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="my-8 overflow-x-auto border-2 border-primary/40 bg-background/50 p-4 [&_svg]:mx-auto [&_svg]:h-auto [&_svg]:max-w-full"
+      dangerouslySetInnerHTML={{ __html: svg }}
+    />
+  );
 };
 
 const components: Components = {
@@ -83,7 +153,15 @@ const components: Components = {
       {children}
     </blockquote>
   ),
+  pre: ({ children }) => <>{children}</>,
   code: ({ children, className }) => {
+    const language = /language-(\w+)/.exec(className ?? "")?.[1];
+    const code = String(children).replace(/\n$/, "");
+
+    if (language === "mermaid") {
+      return <MermaidDiagram chart={code} />;
+    }
+
     // Inline code
     if (!className) {
       return (
@@ -99,6 +177,30 @@ const components: Components = {
       </pre>
     );
   },
+  table: ({ children }) => (
+    <div className="my-6 overflow-x-auto border-2 border-primary/30">
+      <table className="w-full border-collapse font-mono text-sm text-foreground/90">
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children }) => (
+    <thead className="bg-primary/10 text-primary">{children}</thead>
+  ),
+  th: ({ children }) => (
+    <th className="border-b-2 border-primary/30 px-4 py-3 text-left font-bold whitespace-nowrap">
+      {children}
+    </th>
+  ),
+  tbody: ({ children }) => <tbody>{children}</tbody>,
+  tr: ({ children }) => (
+    <tr className="border-b border-foreground/10 last:border-b-0">{children}</tr>
+  ),
+  td: ({ children }) => (
+    <td className="border-r border-foreground/10 px-4 py-3 align-top last:border-r-0">
+      {children}
+    </td>
+  ),
   img: ({ src, alt }) => {
     const figureId = getFigureAnchorId(src, alt);
 
@@ -144,7 +246,7 @@ export const BlogPostRenderer = ({ content }: BlogPostRendererProps) => {
   return (
     <div className="blog-content">
       <ReactMarkdown
-        remarkPlugins={[remarkMath]}
+        remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeRaw, rehypeKatex]}
         components={components}
       >

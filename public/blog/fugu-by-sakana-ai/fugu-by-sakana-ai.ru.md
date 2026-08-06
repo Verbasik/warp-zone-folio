@@ -488,7 +488,7 @@ Fugu-Ultra, напротив, способен вызвать несколько
 
 На первом рисунке Technical Report Fugu и Fugu-Ultra сравниваются с Opus 4.8, Gemini 3.1 Pro, GPT-5.5, а также с непубличными Fable 5 и Mythos Preview. Красные столбцы часто оказываются выше серых: Fugu-Ultra показывает 82,1 на Terminal Bench 2.1, 93,2 на LiveCodeBench, 95,5 на GPQA-Diamond и 86,6 на CharXiv Reasoning 
 
-![Sakana AI, 2026, Fig. 1, p. 1](/warp-zone-folio/blog/fugu-by-sakana-ai/Figure-01.png)
+![Sakana AI, 2026, Fig. 1, p. 1](/warp-zone-folio/blog/fugu-by-sakana-ai/Infographic/Figure-01.png)
 
 Это сильный результат. Его не следует обнулять только потому, что система многоагентная. Пользователь в конечном счёте платит за способность решить задачу, а не за архитектурную чистоту сравнения.
 
@@ -645,7 +645,7 @@ flowchart LR
 
 ##### Формальная запись
 
-![Fig. 2](/warp-zone-folio/blog/fugu-by-sakana-ai/Figure-02.png)
+![Fig. 2](/warp-zone-folio/blog/fugu-by-sakana-ai/Infographic/Figure-02.png)
 
 Пусть pre-trained language model backbone строит скрытое состояние
 
@@ -1633,6 +1633,8 @@ $$
 
 > **KL измеряет, сколько "лишней информации" приходится потратить, когда мы описываем распределение P с помощью модели Q.**
 
+[Видео о KL-divergence на YouTube](https://www.youtube.com/watch?v=tXE23653JrU)
+
 </details>
 
 ### Второй этап: sep-CMA-ES на end-to-end trajectories
@@ -1699,25 +1701,4 @@ TRINITY даёт более подробное обоснование. Авто�
 #### Ограничение terminal reward
 
 Binary reward удобен, но груб. Две неуспешные trajectory могут быть радикально разными: одна почти решила задачу, другая выбрала неподходящего worker с первого шага. Для ES это означает высокую variance fitness estimate и необходимость репликаций. Отчёт говорит об усреднении terminal reward по повторным end-to-end runs, но не публикует полный бюджет Fugu training [Sakana AI, 2026, p. 7].
-
-### От TRINITY к Fugu
-
-TRINITY — не Fugu, но её архитектурная линия видна очень ясно.
-
-TRINITY использует компактную LM примерно на 0,6B параметров и lightweight head примерно на 10K параметров. На каждом turn head выбирает пару **worker + роль**, где роль принадлежит множеству `Thinker`, `Worker`, `Verifier`. Полный transcript снова подаётся coordinator, а процесс завершается, когда Verifier возвращает `ACCEPT`, либо когда исчерпан turn budget [Xu et al., 2026, Abstract, pp. 1–2; Sec. 3.2, pp. 4–5].
-
-Fugu сохраняет hidden-state coordination, lightweight head, singular-value adaptation и sep-CMA-ES, но удаляет role assignment. Выбранная модель всегда вызывается как worker. Авторы прямо связывают это с сужением coordination space и снижением latency [Sakana AI, 2026, Sec. 3.1.1, pp. 5–6].
-
-| Элемент        | TRINITY                                 | Fugu                                                                     | Зачем изменено                                |
-| -------------- | --------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------- |
-| Представление  | Hidden state компактной LM              | Hidden state LM backbone                                                 | Сохранить контекстный signal                  |
-| Head           | Logits по workers и трём ролям          | Logits только по workers                                                 | Уменьшить action space                        |
-| Роли           | Thinker / Worker / Verifier             | Нет role assignment                                                      | Снизить coordination overhead                 |
-| Execution      | Многотуровый role-based loop            | Worker selection внутри внешнего agent loop                              | Лучше встроиться в production harness         |
-| Termination    | Verifier `ACCEPT` или turn limit        | Зависит от внешнего loop; policy не раскрыта как отдельный verifier rule | Разделить routing и lifecycle agent runtime   |
-| Adaptation     | Singular-value fine-tuning              | Singular-value fine-tuning                                               | Малое число trainable parameters              |
-| Optimization   | sep-CMA-ES                              | SFT, затем sep-CMA-ES                                                    | Добавить стабильную single-step инициализацию |
-| Training tasks | Benchmark-style multi-turn coordination | Single-step mix + real coding trajectories                               | Приблизить policy к реальной эксплуатации     |
-
-Переход можно описать как **latency-oriented specialization** исследовательской идеи. TRINITY доказывала, что маленький coordinator способен управлять несколькими LLM через hidden states и роли. Fugu отказывается от части выразительности, чтобы быстрее принимать routing decision.
 
